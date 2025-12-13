@@ -1,30 +1,81 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
+import useAuth from "../../hooks/UseAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const navLinkStyle = ({ isActive }) =>
+    isActive
+      ? "text-red-600 font-semibold"
+      : "hover:text-red-600 transition";
+
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
-      <div className="navbar max-w-7xl mx-auto">
+      <div className="navbar max-w-7xl mx-auto px-4">
 
         {/* Logo */}
         <div className="flex-1">
-          <Link to="/" className="text-2xl font-bold text-indigo-600">
-            StyleDecor
+          <Link to="/" className="text-2xl font-extrabold text-red-600">
+            🩸 LifeDrop
           </Link>
         </div>
 
         {/* Menu */}
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1 text-gray-700 font-medium">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+          <ul className="menu menu-horizontal items-center gap-2 font-medium text-gray-700">
 
-            {/* Dashboard / Login */}
-            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li>
+              <NavLink to="/donation-requests" className={navLinkStyle}>
+                Donation Requests
+              </NavLink>
+            </li>
+
+            {!user ? (
+              <li>
+                <NavLink to="/login" className={navLinkStyle}>
+                  Login
+                </NavLink>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/funding" className={navLinkStyle}>
+                    Funding
+                  </NavLink>
+                </li>
+
+                {/* Avatar Dropdown */}
+                <li className="dropdown dropdown-end">
+                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full ring ring-red-500 ring-offset-base-100 ring-offset-2">
+                      <img
+                        src={user?.photoURL || "https://i.ibb.co/2kR5zq0/user.png"}
+                        alt="user avatar"
+                      />
+                    </div>
+                  </label>
+
+                  <ul
+                    tabIndex={0}
+                    className="menu dropdown-content mt-3 p-2 shadow bg-white rounded-box w-48"
+                  >
+                    <li>
+                      <NavLink to="/dashboard">Dashboard</NavLink>
+                    </li>
+                    <li>
+                      <button
+                        onClick={logOut}
+                        className="text-red-600 hover:bg-red-50"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </li>
+              </>
+            )}
           </ul>
         </div>
-
       </div>
     </div>
   );
