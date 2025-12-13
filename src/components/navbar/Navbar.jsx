@@ -2,8 +2,8 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../hooks/UseAuth";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
-
+  const { user, signOutUser } = useAuth();
+  console.log("Navbar user:", user);
   const navLinkStyle = ({ isActive }) =>
     isActive
       ? "text-red-600 font-semibold"
@@ -48,6 +48,9 @@ const Navbar = () => {
                 <li className="dropdown dropdown-end">
                   <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full ring ring-red-500 ring-offset-base-100 ring-offset-2">
+                      {
+                      console.log(user.photoURL)
+                      }
                       <img
                         src={user?.photoURL || "https://i.ibb.co/2kR5zq0/user.png"}
                         alt="user avatar"
@@ -63,12 +66,14 @@ const Navbar = () => {
                       <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>
                     <li>
-                      <button
-                        onClick={logOut}
+                      {
+                        user?(<button
+                        onClick={signOutUser}
                         className="text-red-600 hover:bg-red-50"
                       >
                         Logout
-                      </button>
+                      </button>):(<NavLink to="/login">Login</NavLink>)
+                      }
                     </li>
                   </ul>
                 </li>
