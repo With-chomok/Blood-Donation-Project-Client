@@ -24,6 +24,7 @@ const Router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+        hydrateFallbackElement: <div>Loading...</div>,
         loader: () => {
           return fetch("areaDatas.json");
         }

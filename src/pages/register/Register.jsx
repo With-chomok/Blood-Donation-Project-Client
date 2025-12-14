@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import useAuth from "../../hooks/UseAuth";
@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function Register() {
   const {
-    control,
+    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -16,9 +16,10 @@ export default function Register() {
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [upozillas, setUpozillas] = useState([]);
-  const {updateUserProfile, createUser } = useAuth();
+  const { user, updateUserProfile, createUser } = useAuth();
 
-  const selectedDistrict = useWatch({control, name: "district"});
+
+  const selectedDistrict = watch("district");
   const districtCenter = useLoaderData();
   const allDistricts = districtCenter.divisions.flatMap(
     (division) => division.districts
@@ -34,59 +35,43 @@ export default function Register() {
     setUpozillas(districtObj ? districtObj.upazilas : []);
   }, [selectedDistrict]);
 
-  const onSubmit = async (data) => {
-    console.log("Register data:", data.name);
-    // handle register
-    console.log(data.photo[0]);
-    createUser(
-      data.email,
-      data.password,
-      data.name,
-      data.photo,
-      data.district,
-      data.upazila
-    )
-      .then((result) => {
-        console.log(result.user);
-        // 1. image store
-        const formData = new FormData();
-        formData.append("image", data.photo[0]);
+const onSubmit = async (data) => {
+  try {
+    const result = await createUser(data.email, data.password);
 
-        // 2. fetch image api
-        const imageKey = `https://api.imgbb.com/1/upload?key=${
-          import.meta.env.VITE_image_upload_token
-        }`;
+    // image upload
+    const formData = new FormData();
+    formData.append("image", data.photo[0]);
 
-        axios
-          .post(imageKey, formData)
-          .then((res) => {
-            console.log(res.data.data.url, "upload image success");
+    const imageKey = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_token}`;
+    const imgRes = await axios.post(imageKey, formData);
 
-            // 3. save user info to firebase
-            const displayUserInfo = {
-              displayName: data.name,
-              photoURL: res.data.data.url,
-            };
+    const photoURL = imgRes.data.data.url;
 
-            navigate(location.state || "/");
-            updateUserProfile(displayUserInfo)
-              .then(() => {
-                console.log("user profile updated");
-                navigate(location.state || "/");
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          })
+    // firebase profile update
+    await updateUserProfile({
+      displayName: data.name,
+      photoURL: photoURL,
+    });
 
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    // backend user save
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      bloodGroup: data.bloodGroup,
+      district: data.district,
+      upazila: data.upazila,
+      photoURL: photoURL,
+    };
+
+    await axios.post("http://localhost:5000/users", userInfo);
+
+    navigate("/");
+  } catch (error) {
+    console.log("Register error:", error);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-red-50 px-4">
@@ -100,6 +85,7 @@ export default function Register() {
           <div>
             <label className="block font-semibold mb-1">Name</label>
             <input
+            placeholder="Your Full Name"
               type="text"
               {...register("name", { required: "Name is required" })}
               className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20"
@@ -110,6 +96,7 @@ export default function Register() {
           <div>
             <label className="block font-semibold mb-1">Email</label>
             <input
+            placeholder="Your Email"
               type="email"
               {...register("email", { required: "Email is required" })}
               className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20"
@@ -170,6 +157,7 @@ export default function Register() {
             <label className="block font-semibold mb-1">Password</label>
 
             <input
+            placeholder=" Password"
               type={showPassword ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
