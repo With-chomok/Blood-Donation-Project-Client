@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
@@ -15,9 +15,11 @@ export default function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  console.log(errors);
   const { user, updateUserProfile, createUser } = useAuth();
   console.log(user);
-  const onSubmit = (data) => {
+  const onSubmit =async (data) =>{
+  
     console.log("Register data:", data.name);
     // handle register
     console.log(data.photo[0]);
@@ -37,13 +39,15 @@ export default function Register() {
           .post(imageKey, formData)
           .then((res) => {
             console.log(res.data.data.url, "upload image success");
-            
+
             // 3. save user info to firebase
             const displayUserInfo = {
               displayName: data.name,
               photoURL: res.data.data.url,
-              
             };
+
+          
+      navigate(location.state || "/");
             updateUserProfile(displayUserInfo)
               .then(() => {
                 console.log("user profile updated");
@@ -101,22 +105,63 @@ export default function Register() {
             />
           </div>
 
+          {/* Blood Group */}
+          <label className="block font-semibold mb-1">Blood Group</label>
+          <select
+            {...register("bloodGroup", { required: true })}
+            className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20">
+            <option value="">Select Blood Group</option>
+            {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((bg) => (
+              <option key={bg}>{bg}</option>
+            ))}
+          </select>
+
+          {/* District */}
+          <label className="block font-semibold mb-1">District Name</label>
+          <input
+            type="text"
+            {...register("district", { required: true })}
+            className="file-input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 "
+          />
+
+          {/* Upazila */}
+          <label className="block font-semibold mb-1">Upazila Name</label>
+          <input
+            type="text"
+            {...register("upazila", { required: true })}
+            className="file-input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 "
+          />
+
           {/* Password */}
           <div className="relative">
             <label className="block font-semibold mb-1">Password</label>
 
             <input
               type={showPassword ? "text" : "password"}
-              {...register("password")}
-              className="input focus:border-red-500 input-bordered w-full rounded-2xl pr-16 outline-none shadow-lg shadow-red-500/20"
+              {...register("password", {
+                required: "Password is required",
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+                  message:
+                    "Password must be 8 characters, include uppercase, lowercase, number & special character",
+                },
+              })}
+              className="input input-bordered w-full rounded-2xl pr-20 outline-none shadow-lg shadow-red-500/20 focus:border-red-500"
             />
 
+            {/* Show / Hide Button */}
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-2/3 -translate-y-1/2 text-sm font-semibold text-red-600">
+              className="absolute right-4 -translate-y-1/2 text-sm font-semibold text-red-600 z-10 mt-5">
               {showPassword ? "Hide" : "Show"}
             </button>
+
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           {/* Submit */}

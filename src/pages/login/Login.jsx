@@ -26,18 +26,14 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
-
         <h2 className="text-3xl font-bold text-center text-red-600 mb-6">
           Login to LifeDrop
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
           {/* Email */}
           <div>
-            <label className="block font-semibold mb-1 ">
-              Email
-            </label>
+            <label className="block font-semibold mb-1 ">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -53,13 +49,14 @@ export default function Login() {
 
           {/* Password */}
           <div>
-            <label className="block font-semibold mb-1">
-              Password
-            </label>
+            <label className="block font-semibold mb-1">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
-              {...register("password", { required: "Password is required" })}
+              {...register("password", {
+                required: "Password is required",
+                pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+              })}
               className="input input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 focus:border-red-500"
             />
             {errors.password && (
