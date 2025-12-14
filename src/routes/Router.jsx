@@ -23,7 +23,10 @@ const Router = createBrowserRouter([
       },
       {
         path: "/register",
-        Component: Register
+        Component: Register,
+        loader: () => {
+          return fetch("areaDatas.json");
+        }
       }
     ],
   },

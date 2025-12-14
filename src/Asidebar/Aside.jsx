@@ -3,7 +3,7 @@ import useAuth from "../hooks/UseAuth";
 
 
 const Aside = () => {
-  const { user, logOut } = useAuth();
+  const { user, signOutUser } = useAuth();
 
   const linkClass = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
@@ -69,9 +69,9 @@ const Aside = () => {
       {/* Logout */}
       <div className="p-4 border-t">
         <button
-          onClick={logOut}
+          onClick={signOutUser}
           className="w-full flex items-center justify-center gap-2 py-2 rounded-xl
-          bg-red-50 text-red-600 font-semibold hover:bg-red-100 transition"
+          bg-red-50 text-red-600 font-semibold hover:bg-red-100 transition cursor-pointer"
         >
           🚪 Logout
         </button>

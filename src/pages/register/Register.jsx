@@ -1,29 +1,51 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import useAuth from "../../hooks/UseAuth";
 import axios from "axios";
 
 export default function Register() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [showPassword, setShowPassword] = useState(false);
-
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(errors);
-  const { user, updateUserProfile, createUser } = useAuth();
-  console.log(user);
-  const onSubmit =async (data) =>{
-  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
+  const [upozillas, setUpozillas] = useState([]);
+  const {updateUserProfile, createUser } = useAuth();
+
+  const selectedDistrict = useWatch({control, name: "district"});
+  const districtCenter = useLoaderData();
+  const allDistricts = districtCenter.divisions.flatMap(
+    (division) => division.districts
+  );
+  useEffect(() => {
+    if (!selectedDistrict) {
+      setUpozillas([]);
+      return;
+    }
+
+    const districtObj = allDistricts.find((d) => d.name === selectedDistrict);
+
+    setUpozillas(districtObj ? districtObj.upazilas : []);
+  }, [selectedDistrict]);
+
+  const onSubmit = async (data) => {
     console.log("Register data:", data.name);
     // handle register
     console.log(data.photo[0]);
-    createUser(data.email, data.password, data.name, data.photo)
+    createUser(
+      data.email,
+      data.password,
+      data.name,
+      data.photo,
+      data.district,
+      data.upazila
+    )
       .then((result) => {
         console.log(result.user);
         // 1. image store
@@ -46,8 +68,7 @@ export default function Register() {
               photoURL: res.data.data.url,
             };
 
-          
-      navigate(location.state || "/");
+            navigate(location.state || "/");
             updateUserProfile(displayUserInfo)
               .then(() => {
                 console.log("user profile updated");
@@ -118,19 +139,31 @@ export default function Register() {
 
           {/* District */}
           <label className="block font-semibold mb-1">District Name</label>
-          <input
+          <select
             type="text"
             {...register("district", { required: true })}
-            className="file-input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 "
-          />
+            className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20">
+            <option value="district">Select District</option>
+            {allDistricts.map((district, index) => (
+              <option key={index} value={district.name}>
+                {district.name}
+              </option>
+            ))}
+          </select>
 
           {/* Upazila */}
           <label className="block font-semibold mb-1">Upazila Name</label>
-          <input
+          <select
             type="text"
             {...register("upazila", { required: true })}
-            className="file-input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 "
-          />
+            className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20">
+            <option value="">Select Upazila</option>
+            {upozillas.map((u, i) => (
+              <option key={i} value={typeof u === "string" ? u : u.name}>
+                {typeof u === "string" ? u : u.name}
+              </option>
+            ))}
+          </select>
 
           {/* Password */}
           <div className="relative">
