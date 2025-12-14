@@ -63,7 +63,7 @@ const Navbar = () => {
                     className="menu dropdown-content mt-3 p-2 shadow bg-white rounded-box w-48"
                   >
                     <li>
-                      <NavLink to="/dashboard">Dashboard</NavLink>
+                      <NavLink to="/dashboard/main">Dashboard</NavLink>
                     </li>
                     <li>
                       {
