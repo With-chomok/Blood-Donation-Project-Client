@@ -6,6 +6,8 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import MainDashboard from "../pages/Dashboard/maindashboard/MAinDashboard";
+import AddRequest from "../pages/Dashboard/AddRequest/AddRequest";
+import Loading from "../components/Loader/Loading";
 
 const Router = createBrowserRouter([
   {
@@ -24,7 +26,7 @@ const Router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
-        hydrateFallbackElement: <div>Loading...</div>,
+        hydrateFallbackElement: <Loading></Loading>,
         loader: () => {
           return fetch("areaDatas.json");
         }
@@ -32,13 +34,21 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <DashboardLayout></DashboardLayout>,
-    children: [
+     children: [
       {
-        path:'main',
-        element:<MainDashboard></MainDashboard>
-      }
+        index: true, 
+        Component: MainDashboard,
+      },
+      {
+        path: "add-request", 
+        Component: AddRequest,
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: () => {
+          return fetch("/areaDatas.json");
+        }
+      },
 
     ]
   }

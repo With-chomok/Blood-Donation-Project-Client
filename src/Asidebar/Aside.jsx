@@ -42,7 +42,7 @@ const Aside = () => {
       {/* Menu */}
       <nav className="p-4 space-y-1">
 
-        <NavLink to="/dashboard" className={linkClass}>
+        <NavLink to="/dashboard" end className={linkClass}>
           🏠 Dashboard
         </NavLink>
 
@@ -51,7 +51,7 @@ const Aside = () => {
         </NavLink>
 
         <NavLink
-          to="/dashboard/all-blood-donation-request"
+          to="/dashboard/add-request"
           className={linkClass}
         >
           🩸 Blood Requests
@@ -61,7 +61,7 @@ const Aside = () => {
           💰 Funding
         </NavLink>
 
-        <NavLink to="/dashboard/profile" className={linkClass}>
+        <NavLink to="/dashboard/profile" end className={linkClass}>
           👤 Profile
         </NavLink>
       </nav>

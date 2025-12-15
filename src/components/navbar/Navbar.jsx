@@ -3,7 +3,7 @@ import useAuth from "../../hooks/UseAuth";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
-  console.log("Navbar user:", user);
+
   const navLinkStyle = ({ isActive }) =>
     isActive
       ? "text-red-600 font-semibold"
@@ -63,7 +63,7 @@ const Navbar = () => {
                     className="menu dropdown-content mt-3 p-2 shadow bg-white rounded-box w-48"
                   >
                     <li>
-                      <NavLink to="/dashboard/main">Dashboard</NavLink>
+                      <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>
                     <li>
                       {
