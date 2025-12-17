@@ -18,6 +18,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [roleLoading, setRoleLoading] = useState(true);
   const [role, setRole] = useState("");
   console.log(role);
   const createUser = (email, password) => {
@@ -58,12 +59,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (!user?.email) return;
-
     axios
       .get(`http://localhost:5000/users/role/${user.email}`)
       .then((res) => {
-        console.log("role is", res.data.role);
         setRole(res.data.role);
+        setRoleLoading(false);
       })
       .catch((err) => {
         console.error(err);
@@ -78,7 +78,8 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     user,
     loading,
-    role
+    role,
+    roleLoading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

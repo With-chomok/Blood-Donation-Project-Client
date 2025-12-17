@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import useAuth from "../hooks/UseAuth";
 
 const Aside = () => {
-  const { user, signOutUser } = useAuth();
+  const { user, signOutUser, role } = useAuth();
 
   const linkClass = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
@@ -25,7 +25,7 @@ const Aside = () => {
         <img
           src={user?.photoURL || "https://i.ibb.co/2kR5zq0/user.png"}
           alt="admin"
-          className="w-10 h-10 rounded-full ring ring-red-500 ring-offset-2"
+          className="w-11 h-11 rounded-full object-cover ring ring-red-500 ring-offset-2"
         />
         <div>
           <p className="font-semibold text-gray-800">{user?.displayName}</p>
@@ -38,13 +38,17 @@ const Aside = () => {
         <NavLink to="/dashboard" end className={linkClass}>
           🏠 Dashboard
         </NavLink>
-        <NavLink to="/dashboard/all-users" className={linkClass}>
-          👥 All Users
-        </NavLink>
+        {role == "Admin" && (
+          <NavLink to="/dashboard/all-users" className={linkClass}>
+            👥 All Users
+          </NavLink>
+        )}
 
-        <NavLink to="/dashboard/add-request" className={linkClass}>
-          🩸 Blood Requests
-        </NavLink>
+        {role == "Donor" && (
+          <NavLink to="/dashboard/add-request" className={linkClass}>
+            🩸 Blood Requests
+          </NavLink>
+        )}
 
         <NavLink to="/dashboard/funding" className={linkClass}>
           💰 Funding

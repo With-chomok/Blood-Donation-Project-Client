@@ -9,6 +9,7 @@ import MainDashboard from "../pages/Dashboard/maindashboard/MAinDashboard";
 import AddRequest from "../pages/Dashboard/AddRequest/AddRequest";
 import Loading from "../components/Loader/Loading";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../pages/AllUsers/AllUsers";
 
 const Router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const Router = createBrowserRouter([
           return fetch("/areaDatas.json");
         }
       },
+      {
+        path: "all-users",
+        Component: AllUsers
+      }
 
     ]
   }
