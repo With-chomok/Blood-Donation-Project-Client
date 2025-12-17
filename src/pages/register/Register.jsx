@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
+import { Link, useLoaderData,  useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import useAuth from "../../hooks/UseAuth";
 import axios from "axios";
@@ -13,10 +13,10 @@ export default function Register() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const location = useLocation();
+
   const [showPassword, setShowPassword] = useState(false);
   const [upozillas, setUpozillas] = useState([]);
-  const { user, updateUserProfile, createUser } = useAuth();
+  const {  updateUserProfile, createUser } = useAuth();
 
 
   const selectedDistrict = watch("district");

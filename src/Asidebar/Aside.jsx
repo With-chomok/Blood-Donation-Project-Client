@@ -1,7 +1,6 @@
 import { NavLink } from "react-router";
 import useAuth from "../hooks/UseAuth";
 
-
 const Aside = () => {
   const { user, signOutUser } = useAuth();
 
@@ -15,12 +14,9 @@ const Aside = () => {
 
   return (
     <aside className="w-64 bg-white shadow-xl min-h-screen hidden md:block">
-      
       {/* Logo */}
       <div className="p-6 border-b">
-        <h1 className="text-2xl font-extrabold text-red-600">
-          🩸 LifeDrop
-        </h1>
+        <h1 className="text-2xl font-extrabold text-red-600">🩸 LifeDrop</h1>
         <p className="text-sm text-gray-500 mt-1">Admin Panel</p>
       </div>
 
@@ -32,28 +28,21 @@ const Aside = () => {
           className="w-10 h-10 rounded-full ring ring-red-500 ring-offset-2"
         />
         <div>
-          <p className="font-semibold text-gray-800">
-            {user?.displayName}
-          </p>
+          <p className="font-semibold text-gray-800">{user?.displayName}</p>
           <p className="text-xs text-gray-500">{user?.email}</p>
         </div>
       </div>
 
       {/* Menu */}
       <nav className="p-4 space-y-1">
-
         <NavLink to="/dashboard" end className={linkClass}>
           🏠 Dashboard
         </NavLink>
-
         <NavLink to="/dashboard/all-users" className={linkClass}>
           👥 All Users
         </NavLink>
 
-        <NavLink
-          to="/dashboard/add-request"
-          className={linkClass}
-        >
+        <NavLink to="/dashboard/add-request" className={linkClass}>
           🩸 Blood Requests
         </NavLink>
 
@@ -71,8 +60,7 @@ const Aside = () => {
         <button
           onClick={signOutUser}
           className="w-full flex items-center justify-center gap-2 py-2 rounded-xl
-          bg-red-50 text-red-600 font-semibold hover:bg-red-100 transition cursor-pointer"
-        >
+          bg-red-50 text-red-600 font-semibold hover:bg-red-100 transition cursor-pointer">
           🚪 Logout
         </button>
       </div>

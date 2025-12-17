@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/UseAuth";
+import { useState } from "react";
 
 export default function Login() {
   const { signInUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -48,19 +49,31 @@ export default function Login() {
           </div>
 
           {/* Password */}
-          <div>
+          <div className="relative">
             <label className="block font-semibold mb-1">Password</label>
             <input
-              type="password"
-              placeholder="Enter your password"
+              placeholder=" Password"
+              type={showPassword ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
-                pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+                  message:
+                    "Password must be 8 characters, include uppercase, lowercase, number & special character",
+                },
               })}
-              className="input input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 focus:border-red-500"
+              className="input input-bordered w-full rounded-2xl pr-20 outline-none shadow-lg shadow-red-500/20 focus:border-red-500"
             />
+
+            {/* Show / Hide Button */}
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute -ml-13  text-sm font-semibold text-red-600 z-10 mt-2">
+              {showPassword ? "Hide" : "Show"}
+            </button>
             {errors.password && (
-              <p className="text-red-500 text-sm mt-1">
+              <p className="text-red-500  text-sm mt-1">
                 {errors.password.message}
               </p>
             )}

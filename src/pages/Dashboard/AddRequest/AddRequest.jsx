@@ -3,16 +3,18 @@ import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/UseAuth";
-import useAxios from "../../../hooks/useAxios";
+
+import Loading from "../../../components/Loader/Loading";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddRequest = () => {
   const { user } = useAuth();
   console.log(user);
+
   const [upozillas, setUpozillas] = useState([]);
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
 
-  const axiosInstance = useAxios();
-
+  const AxiosSecure = useAxiosSecure();
   const selectedDistrict = watch("district");
   const districtCenter = useLoaderData();
 
@@ -29,20 +31,22 @@ const AddRequest = () => {
 
     setUpozillas(districtObj ? districtObj.upazilas : []);
   }, [selectedDistrict]);
-
+  if (!user) {
+    return <Loading></Loading>;
+  }
   const onSubmit = (data) => {
     const donationRequest = {
       ...data,
       requesterName: user.displayName,
       requesterEmail: user.email,
-      donation_Status: "pending", 
+      donationStatus: "pending",
     };
     console.log(data);
 
-    axiosInstance
-      .post("/requests", donationRequest)
+    AxiosSecure.post("/requests", donationRequest)
       .then((res) => {
-        alert(res.data.insertId);
+        alert(res.data.insertedId);
+        reset();
       })
       .catch((err) => console.log(err));
   };
@@ -53,7 +57,7 @@ const AddRequest = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white w-full max-w-2xl p-8 rounded-2xl shadow-xl shadow-red-500/20">
         <h2 className="text-3xl font-bold text-center text-red-600 mb-6">
-          🩸 Create Blood Donation Request
+          🩸 Blood Donation Request
         </h2>
 
         {/* Requester Info */}
@@ -129,7 +133,7 @@ const AddRequest = () => {
           <label className="font-semibold">Full Address Line</label>
           <input
             {...register("address", { required: true })}
-            placeholder="Zahir Raihan Rd, Dhaka"
+            placeholder="CK Gosh Rd, Mymensingh 2200"
             className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20"
           />
         </div>

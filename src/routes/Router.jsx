@@ -8,6 +8,7 @@ import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import MainDashboard from "../pages/Dashboard/maindashboard/MAinDashboard";
 import AddRequest from "../pages/Dashboard/AddRequest/AddRequest";
 import Loading from "../components/Loader/Loading";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
      children: [
       {
         index: true, 
