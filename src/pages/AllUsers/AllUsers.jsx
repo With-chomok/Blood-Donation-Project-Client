@@ -11,36 +11,39 @@ const AllUsers = () => {
     axiosSecure.get("/users").then((res) => {
       setUsers(res.data);
     });
-  }, [axiosSecure, setUsers]);
-  console.log(users);
+  }, [axiosSecure]);
 
 
-  
   const filteredUsers =
-    filter === "all"
-      ? users
-      : users.filter(user => user.status === filter);
+    filter === "all" ? users : users.filter((user) => user.status === filter);
 
   // 🔴 Action handlers (API call later)
-  const updateStatus = (id, status) => {
-    console.log(id, status);
-  };
+  const updateStatus = (email, status) => {
+  axiosSecure
+    .patch(`/update/user/status?email=${email}&status=${status}`)
+    .then((res) => {
+      if (res.data.modifiedCount > 0) {
+        const updatedUsers = users.map((user) =>
+          user.email === email ? { ...user, status } : user
+        );
+        setUsers(updatedUsers);
+      }
+    });
+};
+
 
   const updateRole = (id, role) => {
     console.log(id, role);
   };
   return (
-        <div className="bg-white rounded-xl shadow-lg p-6">
+    <div className="bg-white rounded-xl shadow-lg p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-red-600">
-          👤 All Users
-        </h2>
+        <h2 className="text-2xl font-bold text-red-600">👤 All Users</h2>
 
         {/* Filter */}
         <select
           onChange={(e) => setFilter(e.target.value)}
-          className="select outline-none hover:border-red-500 focus:border-red-500  select-bordered"
-        >
+          className="select outline-none hover:border-red-500 focus:border-red-500  select-bordered">
           <option value="all">All</option>
           <option value="active">Active</option>
           <option value="blocked">Blocked</option>
@@ -76,11 +79,8 @@ const AllUsers = () => {
                 <td>
                   <span
                     className={`badge ${
-                      user.status === "active"
-                        ? "badge-success"
-                        : "badge-error"
-                    }`}
-                  >
+                      user.status == "active" ? "badge-success" : "badge-error"
+                    }`}>
                     {user.status}
                   </span>
                 </td>
@@ -94,27 +94,20 @@ const AllUsers = () => {
 
                     <ul
                       tabIndex={0}
-                      className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-48"
-                    >
-                      {user.status === "active" ? (
+                      className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-48">
+                      {user.status == "active" ? (
                         <li>
                           <button
-                            onClick={() =>
-                              updateStatus(user._id, "blocked")
-                            }
-                            className="text-red-600"
-                          >
+                            onClick={() => updateStatus(user?.email, "blocked")}
+                            className="text-red-600">
                             Block User
                           </button>
                         </li>
                       ) : (
                         <li>
                           <button
-                            onClick={() =>
-                              updateStatus(user._id, "active")
-                            }
-                            className="text-green-600"
-                          >
+                            onClick={() => updateStatus(user?.email, "active")}
+                            className="text-green-600">
                             Unblock User
                           </button>
                         </li>
@@ -123,10 +116,7 @@ const AllUsers = () => {
                       {user.role !== "volunteer" && (
                         <li>
                           <button
-                            onClick={() =>
-                              updateRole(user._id, "volunteer")
-                            }
-                          >
+                            onClick={() => updateRole(user._id, "volunteer")}>
                             Make Volunteer
                           </button>
                         </li>
@@ -134,11 +124,7 @@ const AllUsers = () => {
 
                       {user.role !== "admin" && (
                         <li>
-                          <button
-                            onClick={() =>
-                              updateRole(user._id, "admin")
-                            }
-                          >
+                          <button onClick={() => updateRole(user._id, "admin")}>
                             Make Admin
                           </button>
                         </li>

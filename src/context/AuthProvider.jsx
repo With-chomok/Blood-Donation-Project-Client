@@ -20,7 +20,8 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [roleLoading, setRoleLoading] = useState(true);
   const [role, setRole] = useState("");
-  console.log(role);
+  const [userStatus, setUserStatus] = useState('')
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -57,19 +58,23 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!user?.email) return;
-    axios
-      .get(`http://localhost:5000/users/role/${user.email}`)
-      .then((res) => {
-        setRole(res.data.role);
-        setRoleLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [user]);
+    useEffect(() => {
+      if (!user?.email) return;
+      axios
+        .get(`http://localhost:5000/users/role/${user.email}`)
+        .then((res) => {
+          setRole(res.data.role);
+          setUserStatus(res.data.status)
+          setRoleLoading(false);
+          
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }, [user]);
+  
 
+  
   const authInfo = {
     createUser,
     updateUserProfile,
@@ -80,6 +85,7 @@ const AuthProvider = ({ children }) => {
     loading,
     role,
     roleLoading,
+    userStatus,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
