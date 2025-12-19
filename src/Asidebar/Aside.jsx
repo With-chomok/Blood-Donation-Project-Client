@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import useAuth from "../hooks/UseAuth";
-
+import request from "/request.png"
 const Aside = () => {
   const { user, signOutUser, role } = useAuth();
 
@@ -49,6 +49,10 @@ const Aside = () => {
             🩸 Blood Requests
           </NavLink>
         )}
+
+        <NavLink to="/dashboard/my-donation-requests" className={linkClass}>
+        <img src={request} className="w-[18px] h-[18px]" alt="" /> My Request
+        </NavLink>
 
         <NavLink to="/dashboard/funding" className={linkClass}>
           💰 Funding

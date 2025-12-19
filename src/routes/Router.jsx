@@ -10,6 +10,7 @@ import AddRequest from "../pages/Dashboard/AddRequest/AddRequest";
 import Loading from "../components/Loader/Loading";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/AllUsers/AllUsers";
+import MyRequest from "../pages/MyRequest/MyRequest";
 
 const Router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const Router = createBrowserRouter([
       {
         path: "all-users",
         Component: AllUsers
+      },
+      {
+        path: 'my-donation-requests',
+        Component: MyRequest
       }
 
     ]
