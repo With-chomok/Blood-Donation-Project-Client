@@ -11,6 +11,7 @@ import Loading from "../components/Loader/Loading";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/AllUsers/AllUsers";
 import MyRequest from "../pages/MyRequest/MyRequest";
+import Donate from "../pages/Donate/Donate";
 
 const Router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const Router = createBrowserRouter([
         loader: () => {
           return fetch("areaDatas.json");
         }
+      },
+      {
+        path:"/donate",
+        Component:Donate
       }
     ],
   },

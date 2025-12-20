@@ -25,7 +25,11 @@ const Navbar = () => {
                 Donation Requests
               </NavLink>
             </li>
-
+            <li>
+              <NavLink to="/donate" className={navLinkStyle}>
+                Donate
+              </NavLink>
+            </li>
             {!user ? (
               <li>
                 <NavLink to="/login" className={navLinkStyle}>

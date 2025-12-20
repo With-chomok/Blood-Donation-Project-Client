@@ -24,11 +24,19 @@ const MyRequest = () => {
 
 
 
+  // filter logic
+  const filteredRequests =
+    filter === "all"
+      ? myRequests
+      : myRequests.filter((req) => req.donationStatus  === filter);
+
   // pagination logic
   const totalPages = Math.ceil(totalRequest / itemsPerPage);
   const pages = [...Array(totalPages).keys()].map((e) => e + 1);
 //   const startIndex = (currentPage - 1) * itemsPerPage;
   
+
+console.log(myRequests, filteredRequests);
 
 const handlePrev = () => {
     if(currentPage> 1){
@@ -81,7 +89,7 @@ const handleNext = () => {
 
           <tbody>
             
-            {myRequests.map((req) => (
+            {filteredRequests.map((req) => (
               <tr key={req._id}>
                 <td>{req.recipientName}</td>
                 <td>{req.address}</td>
