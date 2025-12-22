@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [roleLoading, setRoleLoading] = useState(true);
   const [role, setRole] = useState("");
-  const [userStatus, setUserStatus] = useState('')
+  const [userStatus, setUserStatus] = useState("");
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -58,21 +58,22 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-    useEffect(() => {
-      if (!user?.email) return;
-      axios
-        .get(`http://localhost:5000/users/role/${user.email}`)
-        .then((res) => {
-          setRole(res.data.role);
-          setUserStatus(res.data.status)
-          setRoleLoading(false);
-          
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }, [user]);
-  
+  useEffect(() => {
+    if (!user?.email) return;
+    axios
+      .get(
+        `https://projects-backend-side-11.vercel.app/users/role/${user.email}`
+      )
+      .then((res) => {
+        setRole(res.data.role);
+        setUserStatus(res.data.status);
+        setRoleLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [user]);
+
   const authInfo = {
     createUser,
     updateUserProfile,

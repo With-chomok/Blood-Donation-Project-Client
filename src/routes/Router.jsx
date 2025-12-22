@@ -5,7 +5,7 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
-import MainDashboard from "../pages/Dashboard/maindashboard/MAinDashboard";
+import MainDashboard from "../pages/Dashboard/maindashboard/MainDashboard"
 import AddRequest from "../pages/Dashboard/AddRequest/AddRequest";
 import Loading from "../components/Loader/Loading";
 import PrivateRoute from "./PrivateRoute";
@@ -77,7 +77,7 @@ const Router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: MainDashboard,
+        Component: MainDashboard
       },
       {
         path: "add-request",

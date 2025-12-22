@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/UseAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const DashboardHome = () => {
+const MainDashboard = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -165,4 +165,4 @@ const DashboardHome = () => {
   );
 };
 
-export default DashboardHome;
+export default MainDashboard;

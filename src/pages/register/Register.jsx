@@ -66,7 +66,10 @@ export default function Register() {
         photoURL: photoURL,
       };
 
-      await axios.post("http://localhost:5000/users", userInfo);
+      await axios.post(
+        "https://projects-backend-side-11.vercel.app/users",
+        userInfo
+      );
 
       navigate("/");
     } catch (error) {
