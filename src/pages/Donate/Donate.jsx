@@ -1,14 +1,14 @@
 import React from "react";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/UseAuth";
-import {  useNavigate } from "react-router";
+
 
 
 const Donate = () => {
-  const navigate = useNavigate()
+  
   const axiosInstance = useAxios();
   const {user} = useAuth()
-console.log(user);
+
   const handleDonate = (e)=>{
     e.preventDefault();
     const donateAmount = e.target.donateName.value;
@@ -38,21 +38,7 @@ console.log(user);
         Your contribution helps us save more lives
       </p>
 
-      {/* Funding Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-        {[100, 300, 500].map((amount) => (
-          <div
-            key={amount}
-            className="border border-red-600 rounded-xl p-6 text-center shadow hover:shadow-lg transition">
-            <h2 className="text-2xl font-bold">৳{amount}</h2>
-            <p className="text-gray-500 mt-2">One time donation</p>
-            <button className="btn hover:bg-red-600 hover:text-white border-red-600 focus:outline-none mt-4">
-              Donate Now
-            </button>
-          </div>
-        ))}
-      </div>
-
+      
       {/* Custom Amount */}
       <div>
 
@@ -61,7 +47,7 @@ console.log(user);
           type="number"
           name="donateName"
           placeholder="Enter custom amount"
-          className="input input-bordered border-red-500 w-full max-w-xs"
+          className="input input-bordered outline-none border-red-500 w-full max-w-xs"
         />
         <button className="btn bg-red-600 text-white ml-2 mt-3 md:mt-0">
           Donate

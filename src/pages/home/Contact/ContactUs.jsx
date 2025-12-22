@@ -12,16 +12,16 @@ const ContactUs = () => {
             <input
               type="text"
               placeholder="Your Name"
-              className="input input-bordered w-full"
+              className="input focus:border-red-500 input-bordered w-full rounded-xl outline-none shadow-lg shadow-red-500/20"
             />
             <input
               type="email"
               placeholder="Your Email"
-              className="input input-bordered w-full"
+              className="input focus:border-red-500 input-bordered w-full rounded-xl outline-none shadow-lg shadow-red-500/20"
             />
             <textarea
               placeholder="Your Message"
-              className="textarea textarea-bordered w-full"
+              className="input focus:border-red-500 input-bordered w-full rounded-xl outline-none shadow-lg shadow-red-500/20"
             />
             <button className="btn bg-red-600 text-white w-full">
               Send Message
@@ -30,7 +30,7 @@ const ContactUs = () => {
 
           {/* Info */}
           <div className="flex flex-col justify-center text-gray-700">
-            <p className="mb-2">📞 Phone: +880-1XXXXXXXXX</p>
+            <p className="mb-2">📞 Phone: +880-1798571413</p>
             <p className="mb-2">📧 Email: support@lifedrop.com</p>
             <p>
               We are always ready to help you in emergency blood donation needs.

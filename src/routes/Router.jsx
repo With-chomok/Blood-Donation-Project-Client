@@ -14,6 +14,8 @@ import MyRequest from "../pages/MyRequest/MyRequest";
 import Donate from "../pages/Donate/Donate";
 import Profile from "../components/Profile/Profile";
 import PaymentSuccess from "../pages/PaymentSuccess/PaymentSuccess";
+import SearchRequest from "../pages/SearchRequest/SearchRequest";
+import DonationPreview from "../pages/home/DonationPreview/DonationPreview";
 
 const Router = createBrowserRouter([
   {
@@ -23,11 +25,11 @@ const Router = createBrowserRouter([
       {
         index: true,
         path: "/",
-        Component: Home
+        Component: Home,
       },
       {
         path: "/login",
-        Component: Login
+        Component: Login,
       },
       {
         path: "/register",
@@ -35,48 +37,70 @@ const Router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
         loader: () => {
           return fetch("areaDatas.json");
-        }
+        },
       },
       {
-        path:"/donate",
-        Component:Donate
+        path: "/donate",
+        element: (
+          <PrivateRoute>
+            <Donate></Donate>
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/payment-success",
-        Component: PaymentSuccess
+        path: "/payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "/search",
+        Component: SearchRequest,
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: () => {
+          return fetch("areaDatas.json");
+        },
+        
+        
+      },
+      {
+        path: "/donation-requests",
+        Component: DonationPreview
       }
     ],
   },
   {
     path: "dashboard",
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-     children: [
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
       {
-        index: true, 
+        index: true,
         Component: MainDashboard,
       },
       {
-        path: "add-request", 
+        path: "add-request",
         Component: AddRequest,
         hydrateFallbackElement: <Loading></Loading>,
         loader: () => {
           return fetch("/areaDatas.json");
-        }
+        },
       },
       {
         path: "all-users",
-        Component: AllUsers
+        Component: AllUsers,
       },
       {
-        path: 'my-donation-requests',
-        Component: MyRequest
+        path: "my-donation-requests",
+        Component: MyRequest,
       },
       {
-        path:"profile",
-        Component: Profile
+        path: "profile",
+        Component: Profile,
       }
-
-    ]
-  }
+      
+    ],
+  },
 ]);
 export default Router;

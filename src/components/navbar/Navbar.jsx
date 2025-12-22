@@ -5,7 +5,7 @@ const Navbar = () => {
   const { user, signOutUser } = useAuth();
 
   const navLinkStyle = ({ isActive }) =>
-    isActive ? "text-red-600 font-semibold" : "hover:text-red-600 transition";
+    isActive ? "text-red-600  bg-red-100 font-semibold" : "hover:text-red-600 transition";
 
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
@@ -25,11 +25,7 @@ const Navbar = () => {
                 Donation Requests
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/donate" className={navLinkStyle}>
-                Donate
-              </NavLink>
-            </li>
+
             {!user ? (
               <li>
                 <NavLink to="/login" className={navLinkStyle}>
@@ -39,7 +35,7 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
-                  <NavLink to="/funding" className={navLinkStyle}>
+                  <NavLink to="/donate" className={navLinkStyle}>
                     Funding
                   </NavLink>
                 </li>
