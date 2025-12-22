@@ -9,7 +9,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddRequest = () => {
   const { user } = useAuth();
-  console.log(user);
+
 
   const [upozillas, setUpozillas] = useState([]);
   const { register, handleSubmit, watch, reset } = useForm();

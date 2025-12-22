@@ -30,7 +30,7 @@ const DashboardHome = () => {
   const updateStatus = (id, status) => {
     axiosSecure.patch(`/update/user/status/${id}`, { status }).then(() => {
       setRequests((prev) =>
-        prev.map((r) => (r._id === id ? { ...r, status } : r))
+        prev.map((data) => (data._id === id ? { ...data, status } : data))
       );
     });
   };
@@ -98,14 +98,14 @@ const DashboardHome = () => {
 
                     <td>
                       <span className="badge badge-outline capitalize">
-                        {r.status}
+                        {r.donationStatus}
                       </span>
                     </td>
 
                     <td>
-                      {r.status === "inprogress" ? (
+                      {r.donationStatus ? (
                         <div>
-                          <p>{r.donorName}</p>
+                          <p>{r.requesterName}</p>
                           <p className="text-sm text-gray-500">
                             {r.donorEmail}
                           </p>
@@ -116,7 +116,7 @@ const DashboardHome = () => {
                     </td>
 
                     <td className="space-x-1">
-                      {r.status === "inprogress" && (
+                      {r.donationStatus === "inprogress" && (
                         <>
                           <button
                             onClick={() => updateStatus(r._id, "done")}
@@ -131,11 +131,7 @@ const DashboardHome = () => {
                         </>
                       )}
 
-                      <Link
-                        to={`/dashboard/edit-request/${r._id}`}
-                        className="btn btn-xs">
-                        Edit
-                      </Link>
+                  
 
                       <button
                         onClick={() => handleDelete(r._id)}
