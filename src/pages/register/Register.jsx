@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLoaderData,  useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import useAuth from "../../hooks/UseAuth";
 import axios from "axios";
@@ -12,12 +12,12 @@ export default function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const password = watch("password");
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [upozillas, setUpozillas] = useState([]);
-  const {  updateUserProfile, createUser } = useAuth();
-
+  const { updateUserProfile, createUser } = useAuth();
 
   const selectedDistrict = watch("district");
   const districtCenter = useLoaderData();
@@ -35,43 +35,44 @@ export default function Register() {
     setUpozillas(districtObj ? districtObj.upazilas : []);
   }, [selectedDistrict]);
 
-const onSubmit = async (data) => {
-  try {
-    const result = await createUser(data.email, data.password);
+  const onSubmit = async (data) => {
+    try {
+      const result = await createUser(data.email, data.password);
 
-    // image upload
-    const formData = new FormData();
-    formData.append("image", data.photo[0]);
+      // image upload
+      const formData = new FormData();
+      formData.append("image", data.photo[0]);
 
-    const imageKey = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_token}`;
-    const imgRes = await axios.post(imageKey, formData);
+      const imageKey = `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_image_upload_token
+      }`;
+      const imgRes = await axios.post(imageKey, formData);
 
-    const photoURL = imgRes.data.data.url;
+      const photoURL = imgRes.data.data.url;
 
-    // firebase profile update
-    await updateUserProfile({
-      displayName: data.name,
-      photoURL: photoURL,
-    });
+      // firebase profile update
+      await updateUserProfile({
+        displayName: data.name,
+        photoURL: photoURL,
+      });
 
-    // backend user save
-    const userInfo = {
-      name: data.name,
-      email: data.email,
-      bloodGroup: data.bloodGroup,
-      district: data.district,
-      upazila: data.upazila,
-      photoURL: photoURL,
-    };
+      // backend user save
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        bloodGroup: data.bloodGroup,
+        district: data.district,
+        upazila: data.upazila,
+        photoURL: photoURL,
+      };
 
-    await axios.post("http://localhost:5000/users", userInfo);
+      await axios.post("http://localhost:5000/users", userInfo);
 
-    navigate("/");
-  } catch (error) {
-    console.log("Register error:", error);
-  }
-};
-
+      navigate("/");
+    } catch (error) {
+      console.log("Register error:", error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-red-50 px-4">
@@ -85,7 +86,7 @@ const onSubmit = async (data) => {
           <div>
             <label className="block font-semibold mb-1">Name</label>
             <input
-            placeholder="Your Full Name"
+              placeholder="Your Full Name"
               type="text"
               {...register("name", { required: "Name is required" })}
               className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20"
@@ -96,7 +97,7 @@ const onSubmit = async (data) => {
           <div>
             <label className="block font-semibold mb-1">Email</label>
             <input
-            placeholder="Your Email"
+              placeholder="Your Email"
               type="email"
               {...register("email", { required: "Email is required" })}
               className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20"
@@ -157,7 +158,7 @@ const onSubmit = async (data) => {
             <label className="block font-semibold mb-1">Password</label>
 
             <input
-            placeholder=" Password"
+              placeholder=" Password"
               type={showPassword ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
@@ -169,7 +170,26 @@ const onSubmit = async (data) => {
               })}
               className="input input-bordered w-full rounded-2xl pr-20 outline-none shadow-lg shadow-red-500/20 focus:border-red-500"
             />
-
+            <div>
+              <label className="block font-semibold mb-1">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                {...register("confirmPassword", {
+                  required: "Confirm password is required",
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
+                className="input input-bordered w-full rounded-2xl pr-20 outline-none shadow-lg shadow-red-500/20 focus:border-red-500"
+                placeholder="Confirm password"
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
+            </div>
             {/* Show / Hide Button */}
             <button
               type="button"

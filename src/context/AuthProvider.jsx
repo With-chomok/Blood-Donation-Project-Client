@@ -73,8 +73,6 @@ const AuthProvider = ({ children }) => {
         });
     }, [user]);
   
-
-  
   const authInfo = {
     createUser,
     updateUserProfile,

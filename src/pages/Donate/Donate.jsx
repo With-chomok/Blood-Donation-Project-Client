@@ -1,7 +1,7 @@
 import React from "react";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/UseAuth";
-import { Navigate, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 
 
 const Donate = () => {
@@ -23,7 +23,7 @@ console.log(user);
     axiosInstance.post('/create-payment', {formData})
     .then(res => {
       console.log(res.data);
-      navigate(res.data.url)
+      window.location.href=res.data.url;
     })
 
 

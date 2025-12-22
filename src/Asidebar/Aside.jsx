@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import useAuth from "../hooks/UseAuth";
-import request from "/request.png"
+import request from "/request.png";
 const Aside = () => {
   const { user, signOutUser, role } = useAuth();
 
@@ -17,7 +17,7 @@ const Aside = () => {
       {/* Logo */}
       <div className="p-6 border-b">
         <h1 className="text-2xl font-extrabold text-red-600">🩸 LifeDrop</h1>
-        <p className="text-sm text-gray-500 mt-1">Admin Panel</p>
+        <p className="text-md text-black font-bold ml-10">{role} Panel</p>
       </div>
 
       {/* User Info */}
@@ -51,10 +51,10 @@ const Aside = () => {
         )}
 
         <NavLink to="/dashboard/my-donation-requests" className={linkClass}>
-        <img src={request} className="w-[18px] h-[18px]" alt="" /> My Request
+          <img src={request} className="w-[18px] h-[18px]" alt="" /> My Request
         </NavLink>
 
-        <NavLink to="/dashboard/funding" className={linkClass}>
+        <NavLink to="/donate" className={linkClass}>
           💰 Funding
         </NavLink>
 

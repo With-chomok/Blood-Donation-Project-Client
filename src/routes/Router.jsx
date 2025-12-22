@@ -12,6 +12,8 @@ import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/AllUsers/AllUsers";
 import MyRequest from "../pages/MyRequest/MyRequest";
 import Donate from "../pages/Donate/Donate";
+import Profile from "../components/Profile/Profile";
+import PaymentSuccess from "../pages/PaymentSuccess/PaymentSuccess";
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +40,10 @@ const Router = createBrowserRouter([
       {
         path:"/donate",
         Component:Donate
+      },
+      {
+        path:"/payment-success",
+        Component: PaymentSuccess
       }
     ],
   },
@@ -64,6 +70,10 @@ const Router = createBrowserRouter([
       {
         path: 'my-donation-requests',
         Component: MyRequest
+      },
+      {
+        path:"profile",
+        Component: Profile
       }
 
     ]
