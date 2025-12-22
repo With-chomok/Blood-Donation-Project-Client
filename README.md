@@ -1,16 +1,106 @@
-# React + Vite
+📌 Project Title
+Blood Donation Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+👨‍🎓 Student Information
+Student Name: Dipol Das
+Project Type: Full Stack Web Application
+Technology: MERN Stack
+Assignment Category: Web Development
 
-Currently, two official plugins are available:
+📖 Project Description
+The Blood Donation Management System is a web-based application designed to connect blood donors with recipients efficiently.
+The system allows donors to create donation requests, search for donors based on blood group and location, and manage donation activities through a role-based dashboard.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎯 Objectives of the Project
+To make blood donor search easy and fast
+To manage blood donation requests efficiently
+To ensure role-based access (Admin, Donor, Volunteer)
+To provide a secure and user-friendly system
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+👥 User Roles
+Donor
+Volunteer
+Admin
 
-## Expanding the ESLint configuration
+Each user has a separate dashboard with specific permissions.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🏠 Dashboard Features
+🔴 Donor Dashboard
+
+Welcome message with donor name
+View maximum 3 recent donation requests
+View donation status (pending / inprogress / done / canceled)
+Change donation status (done / canceled)
+Edit donation request
+Delete donation request with confirmation
+View total donation requests
+Navigate to “My All Donation Requests” page
+
+🟡 Volunteer Dashboard
+View assigned donation requests
+Assist donors and recipients
+
+🔵 Admin Dashboard
+View all users
+Manage user roles
+View all donation requests
+View total funding (challenging task)
+🔍 Search Page (Public)
+Search donors by:
+Blood Group
+District
+Upazila
+No donor data is shown before searching
+Donor list appears after clicking the search button
+
+👤 Profile Page
+Available for Admin, Donor, Volunteer
+Shows:
+Name
+Email (not editable)
+Avatar
+Blood Group
+District & Upazila
+Profile can be updated using Edit & Save functionality
+
+💰 Funding Page (Private 🔒)
+Shows all funding records in tabular format
+Displays:
+Donor Name
+Fund Amount
+Funding Date
+Stripe payment integration
+Total funds shown in Admin & Volunteer dashboards
+
+🛠️ Technologies Used
+Frontend---------
+React.js
+React Router
+React Hook Form
+Tailwind CSS
+DaisyUI
+Axios
+
+Backend-----------
+Node.js
+Express.js
+MongoDB
+Firebase Admin SDK
+JWT Authentication
+Payment Gateway
+Stripe
+
+🔐 Authentication & Security
+Firebase Authentication
+JWT-based protected routes
+Role-based access control
+
+
+✅ Conclusion
+This project successfully fulfills the requirements of the assignment by implementing a secure, role-based, and user-friendly blood donation management system using modern web technologies.
+
+📜 License
+This project is developed for academic purposes only.
+
+Thank you
