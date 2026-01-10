@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/UseAuth";
 import Swal from "sweetalert2"; 
+import { useNavigate } from "react-router"; // ১. useNavigate ইমপোর্ট করুন
+import { FaArrowLeft } from "react-icons/fa"; // আইকনের জন্য
 
 const Donate = () => {
   const axiosInstance = useAxios();
   const { user } = useAuth();
+  const navigate = useNavigate(); // ২. নেভিগেট হুক সেট করুন
 
   const handleDonate = (e) => {
     e.preventDefault();
     const donateAmount = e.target.donateName.value;
 
-  
     if (!donateAmount || donateAmount <= 0) {
       return Swal.fire("Error", "Please enter a valid amount", "error");
     }
@@ -25,7 +27,6 @@ const Donate = () => {
       donerName,
     };
 
-
     Swal.fire({
       title: "Redirecting to Payment...",
       allowOutsideClick: false,
@@ -38,7 +39,6 @@ const Donate = () => {
       .post("/create-payment", { formData })
       .then((res) => {
         if (res.data.url) {
-          
           window.location.href = res.data.url;
         }
       })
@@ -47,17 +47,31 @@ const Donate = () => {
         Swal.fire("Error", "Something went wrong with the payment", "error");
       });
   };
-useEffect(() => {
-  const sessionId = new URLSearchParams(window.location.search).get("session_id");
-  if (sessionId) {
-    axiosInstance.post(`https://projects-backend-side-11.vercel.app/success-payment?session_id=${sessionId}`)
-      .then(res => {
-        console.log("Payment saved in DB", res.data);
-      });
-  }
-}, []);
+
+  useEffect(() => {
+    const sessionId = new URLSearchParams(window.location.search).get("session_id");
+    if (sessionId) {
+      axiosInstance.post(`/success-payment?session_id=${sessionId}`)
+        .then(res => {
+          console.log("Payment saved in DB", res.data);
+          Swal.fire("Success", "Thank you for your donation!", "success");
+        });
+    }
+  }, [axiosInstance]);
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 min-h-screen">
+      {/* Back Button */}
+      <div className="mb-6">
+        <button 
+          onClick={() => navigate(-1)} // ৩. এটি ইউজারকে এক ধাপ পেছনে নিয়ে যাবে
+          className="flex items-center gap-2 text-gray-600 hover:text-red-600 font-semibold transition-colors group"
+        >
+          <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+          Back to Previous Page
+        </button>
+      </div>
+
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold text-red-600">Support LifeDrop 💖</h1>
         <p className="text-gray-600 mt-4 text-lg">
