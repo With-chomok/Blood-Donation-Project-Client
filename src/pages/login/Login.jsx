@@ -24,7 +24,7 @@ export default function Login() {
   //  Demo Login Function
   const handleDemoLogin = (role) => {
     if (role === "admin") {
-      setValue("email", "admin@gmail.com");
+      setValue("email", "admin12@gmail.com");
       setValue("password", "123456789Aa@");
     } else {
       setValue("email", "dipoldaschomok@gmail.com");
