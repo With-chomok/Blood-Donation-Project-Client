@@ -12,7 +12,7 @@ const CallToAction = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative bg-white rounded-[4rem] p-10 md:p-20 overflow-hidden shadow-2xl shadow-red-500/10 border border-red-50 mx-10">
+          className="relative bg-white rounded-[4rem] p-10 md:p-20 overflow-hidden shadow-2xl shadow-red-500/10 border border-red-50 mx-3  md:mx-10">
           {/*  Subtle Decorative Glows */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-red-100/30 rounded-full -mr-48 -mt-48 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-50/50 rounded-full -ml-32 -mb-32 blur-2xl"></div>

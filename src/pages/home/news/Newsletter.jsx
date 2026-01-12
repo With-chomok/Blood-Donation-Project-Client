@@ -29,7 +29,7 @@ const Newsletter = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative bg-gradient-to-br from-red-50 to-white rounded-[4rem] p-10 md:p-20 border border-red-100 shadow-2xl shadow-red-100/50 overflow-hidden mx-10"
+          className="relative bg-gradient-to-br from-red-50 to-white rounded-[4rem] p-10 md:p-20 border border-red-100 shadow-2xl shadow-red-100/50 overflow-hidden mx-3  md:mx-10"
         >
           {/* Background Decorative Elements */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-200/20 rounded-full -mr-40 -mt-40 blur-3xl"></div>

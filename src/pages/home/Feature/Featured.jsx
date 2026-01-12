@@ -60,7 +60,7 @@ const Featured = () => {
         </div>
 
         {/* Features Grid with Animation */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mx-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mx-3  md:mx-10">
           {features.map((item, index) => (
             <motion.div
               key={index}

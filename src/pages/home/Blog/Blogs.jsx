@@ -39,7 +39,7 @@ const Blogs = () => {
       <div className="max-w-7xl mx-auto px-4">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 mx-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 mx-3  md:mx-10">
           <div className="max-w-xl text-center md:text-left">
             <motion.h2 
               initial={{ opacity: 0, x: -30 }}

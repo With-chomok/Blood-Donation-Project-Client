@@ -7,7 +7,7 @@ const DonationPreview = () => {
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mx-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mx-3  md:mx-10">
           <div className="text-center md:text-left">
             <h2 className="section-title text-gray-800">
               Recent <span className="title-highlight">Donation Requests</span>

@@ -13,7 +13,7 @@ const Banner = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-50/50 rounded-full blur-[100px] opacity-40 -ml-20 -mb-20 "></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 mx-10 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 mx-3  md:mx-10 items-center">
           
           {/* 📝 Left Content */}
           <div className="text-center lg:text-left order-2 lg:order-1">

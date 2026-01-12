@@ -82,7 +82,7 @@ const Services = () => {
         </div>
 
         {/*  Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-10 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-3  md:mx-10 gap-5">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
