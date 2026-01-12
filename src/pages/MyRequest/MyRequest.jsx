@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const MyRequest = () => {
-
-
   const [totalRequest, setTotalRequest] = useState(0);
   const [myRequests, setMyRequests] = useState([]);
   const itemsPerPage = 10;
@@ -22,40 +21,41 @@ const MyRequest = () => {
       });
   }, [axiosSecure, currentPage, itemsPerPage]);
 
-
-
   // filter logic
   const filteredRequests =
     filter === "all"
       ? myRequests
-      : myRequests.filter((req) => req.donationStatus  === filter);
+      : myRequests.filter((req) => req.donationStatus === filter);
 
   // pagination logic
   const totalPages = Math.ceil(totalRequest / itemsPerPage);
   const pages = [...Array(totalPages).keys()].map((e) => e + 1);
-//   const startIndex = (currentPage - 1) * itemsPerPage;
-  
+  //   const startIndex = (currentPage - 1) * itemsPerPage;
 
-console.log(myRequests, filteredRequests);
+  console.log(myRequests, filteredRequests);
 
-const handlePrev = () => {
-    if(currentPage> 1){
-        setCurrentPage(currentPage - 1)
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-}
+  };
 
-const handleNext = () => {
-    if(currentPage < pages.length ){
-        setCurrentPage(currentPage + 1)
+  const handleNext = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
     }
-}
+  };
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 my-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-red-600">
-          🩸 My Donation Requests
-        </h2>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Link
+            to="/dashboard/add-request"
+            className="btn hover:bg-red-700 text-black border border-gray-300  rounded-md px-8  shadow-red-200">
+            Create New Request
+          </Link>
+        </motion.div>
 
         {/* Filter */}
         <select
@@ -88,7 +88,6 @@ const handleNext = () => {
           </thead>
 
           <tbody>
-            
             {filteredRequests.map((req) => (
               <tr key={req._id}>
                 <td>{req.recipientName}</td>
@@ -126,21 +125,28 @@ const handleNext = () => {
       {/* Pagination */}
       {
         <div className="flex justify-center mt-6 gap-2">
-            <button onClick={handlePrev} className="btn btn-sm btn-outline text-red-600">Prev</button>
+          <button
+            onClick={handlePrev}
+            className="btn btn-sm btn-outline text-red-600">
+            Prev
+          </button>
           {pages.map((num) => (
             <button
               key={num}
               onClick={() => setCurrentPage(num)}
               className={`btn btn-sm ${
-                num === currentPage ?
-                   "bg-red-600 text-white"
+                num === currentPage
+                  ? "bg-red-600 text-white"
                   : "btn-outline text-red-600"
               }`}>
               {num}
             </button>
           ))}
-            <button onClick={handleNext} className="btn btn-sm btn-outline text-red-600">Next</button>
-
+          <button
+            onClick={handleNext}
+            className="btn btn-sm btn-outline text-red-600">
+            Next
+          </button>
         </div>
       }
     </div>

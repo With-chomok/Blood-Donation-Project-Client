@@ -13,7 +13,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex-1">
           <Link to="/" className="text-2xl font-extrabold text-red-600">
-            🩸 LifeDrop
+            🩸 <span className="text-gray-800">Life</span><span className="italic">Drop</span>
           </Link>
         </div>
 

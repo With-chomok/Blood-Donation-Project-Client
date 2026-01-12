@@ -16,6 +16,8 @@ import Profile from "../components/Profile/Profile";
 import PaymentSuccess from "../pages/PaymentSuccess/PaymentSuccess";
 import SearchRequest from "../pages/SearchRequest/SearchRequest";
 import DonationPreview from "../pages/home/DonationPreview/DonationPreview";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import TermsOfService from "../pages/TermsOfService/TermsOfService";
 
 const Router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ const Router = createBrowserRouter([
       {
         path: "/donation-requests",
         Component: DonationPreview
+      },
+      {
+        path: "/privacy",
+        Component: PrivacyPolicy
+      },
+      {
+        path: "/terms",
+        Component: TermsOfService
       }
     ],
   },
