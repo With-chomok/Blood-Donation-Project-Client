@@ -48,11 +48,11 @@ const MyRequest = () => {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 my-10">
       {/* Header */}
-      <div className="flex justify-between items-center mb-4">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <div className="md:flex justify-between items-center mb-4">
+        <motion.div className="mb-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link
             to="/dashboard/add-request"
-            className="btn hover:bg-red-700 text-black border border-gray-300  rounded-md px-8  shadow-red-200">
+            className="btn hover:bg-red-700 text-black border border-gray-300 rounded-md px-8  shadow-red-200">
             Create New Request
           </Link>
         </motion.div>

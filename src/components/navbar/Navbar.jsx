@@ -5,24 +5,24 @@ const Navbar = () => {
   const { user, signOutUser } = useAuth();
 
   const navLinkStyle = ({ isActive }) =>
-    isActive ? "text-red-600  bg-red-100 font-semibold" : "hover:text-red-600 transition";
+    isActive ? "text-red-600 p-1 md:px-4 md:py-2 rounded bg-red-100 font-semibold" : "hover:text-red-600 transition p-1 md:px-4 md:py-2 rounded";
 
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
       <div className="navbar max-w-7xl mx-auto px-4">
         {/* Logo */}
-        <div className="flex-1">
-          <Link to="/" className="text-2xl font-extrabold text-red-600">
+        <div className="flex-1 ">
+          <Link to="/" className="md:text-2xl font-extrabold text-red-600">
             🩸 <span className="text-gray-800">Life</span><span className="italic">Drop</span>
           </Link>
         </div>
 
         {/* Menu */}
         <div className="flex-none">
-          <ul className="menu menu-horizontal items-center gap-2 font-medium text-gray-700">
+          <ul className=" menu-horizontal items-center gap-2 font-medium text-gray-700">
             <li>
               <NavLink to="/donation-requests" className={navLinkStyle}>
-                Donation Requests
+                 Requests
               </NavLink>
             </li>
 

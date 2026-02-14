@@ -1,9 +1,20 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure.jsx"
 import { FaMapMarkerAlt, FaCalendarAlt, FaTint } from "react-icons/fa";
 import useAuth from "../../../hooks/UseAuth";
+// import { useEffect } from "react";
 const DonationPreview = () => {
   const { user } = useAuth();
+  // const axiosSecure = useAxiosSecure()
+  // useEffect(() => {
+  //     axiosSecure
+  //       .get(`/my-donation-requests`)
+  //       .then((res) => {
+  //         console.log(res.data);
+          
+  //       });
+  //   }, []);
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-4">
@@ -36,11 +47,11 @@ const DonationPreview = () => {
               }}
               className="group p-8 rounded-3xl border border-transparent hover:border-red-100 transition-all duration-300 ">
               <div className="flex  justify-between items-start mb-6">
-                <div
+                <motion.div
                   whileHover={{ rotate: 360 }}
                   className="p-4 bg-red-50 rounded-2xl text-red-600 group-hover:bg-red-600 duration-100 animate-pulse group-hover:rotate-12  group-hover:text-white   transition-all">
                   <FaTint size={24} />
-                </div>
+                </motion.div>
                 <span className="badge badge-error text-white font-bold p-3">
                   A+ Group
                 </span>
