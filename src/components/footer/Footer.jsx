@@ -119,7 +119,7 @@ const Footer = () => {
         </div>
 
         {/*  Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold tracking-widest text-gray-500 uppercase">
+        <div className="mt-8  pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold tracking-widest text-gray-500 uppercase">
           <p>© {new Date().getFullYear()} LifeDrop. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-red-600 transition-all">Privacy Policy</Link>

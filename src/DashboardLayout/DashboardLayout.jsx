@@ -59,7 +59,7 @@ const { user } = useAuth();
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-6 border-t border-gray-50 bg-gray-50/50">
+        <div className="p-4 border-t border-gray-50 bg-gray-50/50">
           <p className="text-xs text-center text-gray-400 font-medium tracking-widest uppercase">
             © 2026 LifeDrop System
           </p>

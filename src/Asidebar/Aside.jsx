@@ -14,14 +14,14 @@ const Aside = ({ closeMobileMenu }) => {
   const { user, signOutUser, role, loading } = useAuth();
 
   const linkClass = ({ isActive }) =>
-    `flex items-center gap-3 px-5 py-3.5 rounded-2xl font-bold transition-all duration-300 ${
+    `flex items-center gap-3 px-5 py-3 rounded-2xl font-bold transition-all duration-300 ${
       isActive
         ? "bg-red-600 text-white shadow-lg shadow-red-200 scale-[1.02]"
         : "text-gray-600 hover:bg-red-50 hover:text-red-600"
     }`;
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full bg-white  overflow-y-scroll">
       <div className="hidden lg:block p-8 border-b border-gray-50">
         <Link to="/" className="section-title ">
           🩸 Life<span className="title-highlight">Drop</span>
@@ -107,13 +107,13 @@ const Aside = ({ closeMobileMenu }) => {
       </nav>
 
       {/* 🚪 Logout Section */}
-      <div className="px-6 border-t border-gray-50 bg-white sticky bottom-0">
+      <div className="px-6 mt-8 border-t border-gray-50 bg-white sticky bottom-0">
         <button
           onClick={() => {
             signOutUser();
             if (closeMobileMenu) closeMobileMenu();
           }}
-          className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-red-50 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-all duration-300 shadow-sm">
+          className="w-full flex items-center justify-center gap-3 py-3 rounded-2xl bg-red-50 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-all duration-300 shadow-sm">
           <FaSignOutAlt /> Logout
         </button>
       </div>
