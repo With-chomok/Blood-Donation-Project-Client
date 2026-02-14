@@ -18,6 +18,7 @@ import SearchRequest from "../pages/SearchRequest/SearchRequest";
 import DonationPreview from "../pages/home/DonationPreview/DonationPreview";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "../pages/TermsOfService/TermsOfService";
+import DetailsPage from "../pages/Details/DetailsPage";
 
 const Router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const Router = createBrowserRouter([
       {
         path: "/terms",
         Component: TermsOfService
+      },
+      {
+        path:`/details`,
+        Component: DetailsPage
       }
     ],
   },

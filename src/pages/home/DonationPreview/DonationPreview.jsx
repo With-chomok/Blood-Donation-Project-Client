@@ -6,15 +6,7 @@ import useAuth from "../../../hooks/UseAuth";
 // import { useEffect } from "react";
 const DonationPreview = () => {
   const { user } = useAuth();
-  // const axiosSecure = useAxiosSecure()
-  // useEffect(() => {
-  //     axiosSecure
-  //       .get(`/my-donation-requests`)
-  //       .then((res) => {
-  //         console.log(res.data);
-          
-  //       });
-  //   }, []);
+
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-4">
@@ -71,7 +63,7 @@ const DonationPreview = () => {
               <div className="mt-8 pt-6 border-t border-gray-50">
                 {user ? (
                   <Link
-                    to="/my-donation-requests"
+                    to="/details"
                     className="w-full btn bg-gray-800 hover:bg-red-600 text-white border-none rounded-xl transition-all">
                     View Details
                   </Link>
