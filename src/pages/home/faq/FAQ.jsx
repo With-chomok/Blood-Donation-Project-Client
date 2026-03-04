@@ -25,10 +25,10 @@ const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section className="py-24">
+    <section className="pb-24">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-black text-gray-800 mb-4">
+          <h2 className="text-4xl font-black text-base-content mb-4">
             Common <span className="text-red-600">Questions</span>
           </h2>
           <div className="h-1.5 w-20 bg-red-600 mx-auto rounded-full"></div>
@@ -42,13 +42,13 @@ const FAQ = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm"
+              className=" rounded-3xl overflow-hidden border border-red-100/10 shadow-sm"
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 className="w-full p-6 md:p-8 flex justify-between items-center text-left transition-colors hover:bg-red-50/30"
               >
-                <span className="text-lg font-bold text-gray-800">{faq.question}</span>
+                <span className="text-lg font-bold text-base-content">{faq.question}</span>
                 <div className={`p-2 rounded-full ${activeIndex === index ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-400'} transition-all`}>
                   {activeIndex === index ? <FaMinus size={12} /> : <FaPlus size={12} />}
                 </div>
@@ -62,7 +62,7 @@ const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-8 pb-8 text-gray-500 leading-relaxed border-t border-gray-50 pt-4">
+                    <div className="px-8 pb-8 text-base-content/70 leading-relaxed border-t border-gray-50 pt-4">
                       {faq.answer}
                     </div>
                   </motion.div>

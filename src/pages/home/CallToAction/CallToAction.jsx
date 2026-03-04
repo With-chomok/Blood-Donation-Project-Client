@@ -6,13 +6,13 @@ import Typewriter from "typewriter-effect";
 
 const CallToAction = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative bg-white rounded-[4rem] p-10 md:p-20 overflow-hidden shadow-2xl shadow-red-500/10 border border-red-50 mx-3  md:mx-10">
+          className="relative rounded-2xl p-10 md:p-20 overflow-hidden  shadow-red-200 border border-red-50/10 mx-3  md:mx-10">
           {/*  Subtle Decorative Glows */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-red-100/30 rounded-full -mr-48 -mt-48 blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-50/50 rounded-full -ml-32 -mb-32 blur-2xl"></div>
@@ -51,7 +51,7 @@ const CallToAction = () => {
                   whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/register"
-                    className="btn bg-red-600 hover:bg-red-700 text-white px-10 h-16 rounded-2xl border-none shadow-xl shadow-red-200 font-black text-lg gap-3">
+                    className="btn bg-red-500 hover:bg-red-700 text-white px-10 py-8 rounded-2xl border-none shadow-xl shadow-red-100/10 font-black text-lg gap-3 w-full sm:w-auto transition-all">
                     Join Now <FaArrowRight />
                   </Link>
                 </motion.div>
@@ -61,7 +61,7 @@ const CallToAction = () => {
                   whileTap={{ scale: 0.95 }}>
                   <Link
                     to="/donation-requests"
-                    className="btn bg-white hover:bg-gray-50 text-gray-800 px-10 h-16 rounded-2xl border border-gray-200 shadow-lg font-black text-lg">
+                    className="btn bg-white hover:bg-gray-50 text-gray-800 px-10 py-8 rounded-2xl border border-gray-200 shadow-lg font-black text-lg">
                     View Requests
                   </Link>
                 </motion.div>

@@ -1,6 +1,6 @@
 import { FaTint, FaUsers, FaClock, FaHeart } from "react-icons/fa";
-import { motion } from "framer-motion"; // অ্যানিমেশনের জন্য
-import Typewriter from "typewriter-effect"; // টাইপরাইটারের জন্য
+import { motion } from "framer-motion"; 
+import Typewriter from "typewriter-effect"; 
 
 const features = [
   {
@@ -73,7 +73,7 @@ const Featured = () => {
                 backgroundColor: "white",
                 boxShadow: "0px 20px 40px rgba(0,0,0,0.05)" 
               }}
-              className="group p-8 rounded-3xl border border-transparent hover:border-red-100 transition-all duration-300 text-center flex flex-col items-center"
+              className="group p-8 rounded-3xl border hover:border-red-200 border-red-100/10 transition-all duration-300 text-center flex flex-col items-center"
             >
               {/* Icon Container */}
               <motion.div 
@@ -84,11 +84,11 @@ const Featured = () => {
                 {item.icon}
               </motion.div>
 
-              <h3 className="font-bold text-xl text-gray-800 mb-3 group-hover:text-red-600 transition-colors">
+              <h3 className="font-bold text-xl text-base-content/90 mb-3 group-hover:text-red-600 transition-colors ">
                 {item.title}
               </h3>
               
-              <p className="text-gray-500 text-sm leading-relaxed">
+              <p className="text-base-content/70 text-sm leading-relaxed group-hover:text-gray-600 transition-colors">
                 {item.desc}
               </p>
 

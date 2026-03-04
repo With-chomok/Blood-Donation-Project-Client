@@ -1,20 +1,52 @@
 import { Link, NavLink } from "react-router";
 import useAuth from "../../hooks/UseAuth";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light",
+  );
 
+  // Theme change effect
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  // Toggle handle function
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
   const navLinkStyle = ({ isActive }) =>
-    isActive ? "text-red-600 p-1 md:px-4 md:py-2 rounded bg-red-100 font-semibold" : "hover:text-red-600 transition p-1 md:px-4 md:py-2 rounded";
+    isActive
+      ? "text-red-600 p-1 md:px-4 md:py-2 rounded bg-red-100 font-semibold"
+      : "hover:text-red-600 transition p-1 md:px-4 md:py-2 rounded";
 
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
-      <div className="navbar max-w-7xl mx-auto px-4">
+      <div className="navbar max-w-7xl mx-auto px-1 md:px-4">
         {/* Logo */}
         <div className="flex-1 ">
-          <Link to="/" className="md:text-2xl font-extrabold text-red-600">
-            🩸 <span className="text-gray-800">Life</span><span className="italic">Drop</span>
-          </Link>
+          <div className="flex items-center">
+            <Link
+              to="/"
+              className="md:text-2xl font-extrabold text-red-600 flex items-center gap-1">
+              🩸<span className="text-gray-800">Life</span>
+              <span className="italic">Drop</span>
+            </Link>
+            <input
+              type="checkbox"
+              onChange={handleToggle}
+              checked={theme === "dark"}
+              className="toggle toggle-error ml-2 w-8 h-5 md:w-10 md:h-6 md:ml-3"
+            />
+          </div>
         </div>
 
         {/* Menu */}
@@ -22,7 +54,7 @@ const Navbar = () => {
           <ul className=" menu-horizontal items-center gap-2 font-medium text-gray-700">
             <li>
               <NavLink to="/donation-requests" className={navLinkStyle}>
-                 Requests
+                Requests
               </NavLink>
             </li>
 

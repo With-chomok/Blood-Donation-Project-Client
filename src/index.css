@@ -3,13 +3,29 @@
 
 @layer components {
   .section-title {
-    @apply text-2xl md:text-4xl font-black text-gray-800 tracking-tighter flex flex-wrap items-center gap-3;
+    @apply text-2xl md:text-4xl font-black text-base-content tracking-tighter flex flex-wrap items-center gap-3;
   }
+
   .section-subtitle {
-    @apply text-gray-500 mt-2 text-base md:text-lg font-medium;
+    @apply text-base-content/70 mt-2 text-base md:text-lg font-medium;
   }
 
   .title-highlight {
     @apply text-red-600 italic;
   }
 }
+/* body {
+
+  @apply bg-gray-100 text-gray-800;
+} */
+
+/* [data-theme="light"] body {
+  background-color: #f3f4f6; 
+  color: #1f2937;     
+} */
+
+/* Dark Theme Styles */
+/* [data-theme="dark"] body {
+  background-color: #1d232a; 
+  color: #f3f4f6; 
+} */

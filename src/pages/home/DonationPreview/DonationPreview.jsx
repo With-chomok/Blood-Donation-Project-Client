@@ -8,18 +8,18 @@ const DonationPreview = () => {
   const { user } = useAuth();
 
   return (
-    <section className="bg-white py-20">
+    <section className=" py-20">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mx-3  md:mx-10">
           <div className="text-center md:text-left">
-            <h2 className="section-title text-gray-800">
+            <h2 className="section-title ">
               Recent <span className="title-highlight">Donation Requests</span>
             </h2>
             <div className="h-1 w-20 bg-red-600 mx-auto md:mx-0 mt-2"></div>
           </div>
           <Link
             to="/dashboard/my-donation-requests"
-            className="btn btn-ghost text-red-600 font-bold hover:bg-red-50 gap-2">
+            className="btn btn-ghost border-red-200 border text-red-600 font-bold hover:bg-red-50 gap-2">
             View All Requests →
           </Link>
         </div>
@@ -37,7 +37,7 @@ const DonationPreview = () => {
                 backgroundColor: "white",
                 boxShadow: "0px 20px 40px rgba(0,0,0,0.05)",
               }}
-              className="group p-8 rounded-3xl border border-transparent hover:border-red-100 transition-all duration-300 ">
+              className="group p-8 rounded-3xl border   border-red-50/10 transition-all duration-300 ">
               <div className="flex  justify-between items-start mb-6">
                 <motion.div
                   whileHover={{ rotate: 360 }}

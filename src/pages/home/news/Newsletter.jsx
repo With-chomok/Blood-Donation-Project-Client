@@ -22,14 +22,14 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-24 mx-5 bg-white overflow-hidden">
+    <section className="py-24 mx-5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-3">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative bg-gradient-to-br from-red-50 to-white rounded-[4rem] p-10 md:p-20 border border-red-100 shadow-2xl shadow-red-100/50 overflow-hidden mx-3  md:mx-10"
+          className="relative  rounded-2xl p-10 md:px-5 border border-red-100/10 shadow-2xl  overflow-hidden mx-3 md:mx-10"
         >
           {/* Background Decorative Elements */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-200/20 rounded-full -mr-40 -mt-40 blur-3xl"></div>
@@ -76,15 +76,15 @@ const Newsletter = () => {
                     <input
                       type="email"
                       required
-                      placeholder="Enter your email address"
-                      className="input focus:border-red-500 input-bordered w-full rounded-2xl h-16 outline-none shadow-lg shadow-red-500/20 bg-white border-none px-8 text-lg font-medium transition-all"
+                      placeholder="Enter your email..."
+                      className="input focus:border-red-500 input-bordered w-full rounded-2xl py-7 outline-none shadow-lg shadow-red-500/20 border-none px-8 text-lg font-medium transition-all"
                     />
                   </div>
                   
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn bg-red-600 hover:bg-red-700 text-white px-10 h-16 rounded-2xl border-none shadow-xl shadow-red-300 font-black text-lg gap-3 w-full sm:w-auto transition-all"
+                    className="btn bg-red-500 hover:bg-red-700 text-white px-10 py-7 rounded-2xl border-none shadow-xl shadow-red-100/10 font-black text-lg gap-3 w-full sm:w-auto transition-all"
                   >
                     Join <FaPaperPlane className="text-sm group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </motion.button>

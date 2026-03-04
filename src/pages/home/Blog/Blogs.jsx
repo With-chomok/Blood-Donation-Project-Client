@@ -9,7 +9,7 @@ const blogs = [
     title: "The Importance of Regular Blood Donation",
     excerpt: "Discover how your regular blood donation can improve your health and save countless lives in your community.",
     image: "https://media.licdn.com/dms/image/v2/D4E03AQF5JnUXAhXerw/profile-displayphoto-scale_200_200/B4EZnvwYuuHoAY-/0/1760664065419?e=2147483647&v=beta&t=iB7Adpc1EVzYC9KjLrS9SYML9mvYuUnJbKBWh6hXnjc",
-    author: "Dr. Sarah Kabir",
+    author: "Dr. Sarah ",
     date: "Jan 10, 2026",
     category: "Health Tips"
   },
@@ -27,7 +27,7 @@ const blogs = [
     title: "Rare Blood Groups: What You Need to Know",
     excerpt: "Learn about the rarest blood types globally and why donors with these types are so crucial for emergency cases.",
     image: "https://www.eurojuris.fr/medias/org-224/annuaire/pousset-bougere-alban.jpg",
-    author: "Karim Ahmed",
+    author: "Karim ",
     date: "Dec 28, 2025",
     category: "Education"
   }
@@ -35,11 +35,11 @@ const blogs = [
 
 const Blogs = () => {
   return (
-    <section className="py-8 bg-white overflow-hidden">
+    <section className="py-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 mx-3  md:mx-10">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6 mx-3  md:mx-10">
           <div className="max-w-xl text-center md:text-left">
             <motion.h2 
               initial={{ opacity: 0, x: -30 }}
@@ -70,7 +70,7 @@ const Blogs = () => {
         </div>
 
         {/* Blogs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:mx-10">
           {blogs.map((blog, index) => (
             <motion.div
               key={index}
@@ -83,15 +83,19 @@ const Blogs = () => {
                 backgroundColor: "white",
                 boxShadow: "0px 20px 40px rgba(0,0,0,0.05)" 
               }}
-              className="group rounded-3xl border border-transparent hover:border-red-100 transition-all duration-300"
+              className="group rounded-3xl border hover:border-red-100 border-red-100/10 transition-all duration-300"
             >
               {/* Image Container */}
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative rounded-2xl h-60 overflow-hidden">
+                <div >
+
                 <img 
                   src={blog.image} 
                   alt={blog.title} 
-                  className="w-full h-full rounded-2xl object-cover transition-transform duration-700 group-hover:scale-110 "
+                  className="w-full p-5 h-full rounded-4xl object-contain transition-transform duration-700  "
                 />
+                </div>
+              
                 <div className="absolute top-4 left-4">
                   <span className="bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
                     {blog.category}
@@ -112,7 +116,7 @@ const Blogs = () => {
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-red-600 transition-colors line-clamp-2">
+                <h3 className="text-2xl font-bold text-base-content mb-4 group-hover:text-red-600 transition-colors line-clamp-2">
                   {blog.title}
                 </h3>
                 
@@ -122,7 +126,7 @@ const Blogs = () => {
 
                 <motion.button 
                   whileHover={{ x: 5 }}
-                  className="flex items-center gap-3 text-red-600 font-extrabold uppercase tracking-widest text-sm"
+                  className="flex items-center gap-3 text-red-600 font-extrabold uppercase cursor-pointer tracking-widest text-sm"
                 >
                   Read Full Story <FaArrowRight />
                 </motion.button>

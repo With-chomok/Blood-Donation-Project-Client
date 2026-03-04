@@ -22,10 +22,10 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Dr. Kamrul Hasan",
+    name: "Dr. Kamrul",
     role: "Medical Consultant",
     image: "https://i.pravatar.cc/150?u=kamrul",
-    text: "This is the most reliable blood management system I have ever seen. It bridges the gap between donors and patients perfectly.",
+    text: "This is the most reliable blood management system I have ever seen. It bridges the gap between donors and patients perfectly gap between donors.",
     rating: 5,
   },
 ];
@@ -71,7 +71,7 @@ const Testimonial = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
               whileHover={{ y: -10 }}
-              className="bg-white p-10 rounded-[3rem] shadow-xl shadow-red-500/10 hover:border hover:border-red-100 relative group "
+              className=" p-10 rounded-[3rem] shadow-xl shadow-red-500/10 border border-red-100/10 relative group "
             >
               {/*  Glassmorphism Quote Icon */}
               <div className="absolute -top-5 -right-5 w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-red-200 group-hover:rotate-12 transition-transform">
@@ -86,7 +86,7 @@ const Testimonial = () => {
               </div>
 
               {/*  Content */}
-              <p className="text-gray-600 font-medium italic leading-relaxed mb-8">
+              <p className="text-base-content font-medium italic leading-relaxed mb-8">
                 "{item.text}"
               </p>
 
@@ -98,7 +98,7 @@ const Testimonial = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-black text-gray-800 tracking-tight">{item.name}</h4>
+                  <h4 className="font-black text-base-content/70 tracking-tight">{item.name}</h4>
                   <p className="text-red-500 text-xs font-bold uppercase tracking-wider">{item.role}</p>
                 </div>
               </div>
@@ -115,7 +115,7 @@ const Testimonial = () => {
           whileInView={{ opacity: 1 }}
           className="mt-16 text-center"
         >
-          <button className="px-10 py-4 bg-gray-900 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-red-600 transition-all shadow-xl shadow-red-100">
+          <button className="px-10 py-4 bg-gray-900 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-red-600 border-red-100/10 transition-all ">
             Share Your Story
           </button>
         </motion.div>

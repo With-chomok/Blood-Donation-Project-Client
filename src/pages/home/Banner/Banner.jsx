@@ -7,10 +7,10 @@ const Banner = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative bg-white pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden">
+    <section className="relative  pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden rounded">
     
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-50 rounded-full blur-[120px] opacity-60 -mr-48 -mt-48"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-50/50 rounded-full blur-[100px] opacity-40 -ml-20 -mb-20 "></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px]  rounded-full blur-[120px] opacity-60 -mr-48 -mt-48"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80  rounded-full blur-[100px] opacity-40 -ml-20 -mb-20 "></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 mx-3  md:mx-10 items-center">
