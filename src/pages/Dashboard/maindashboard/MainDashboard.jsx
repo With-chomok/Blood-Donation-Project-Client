@@ -303,7 +303,8 @@ const MainDashboard = () => {
                         </div>
                       )}
                       <Link
-                        to={`/donation-request/${r._id}`}
+                        // to={`/donation-request/${r._id}`}
+                        to={`/details`}
                         className="btn btn-xs btn-outline hover:bg-gray-800 transition-all rounded-md">
                         View
                       </Link>

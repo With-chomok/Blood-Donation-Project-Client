@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
@@ -9,10 +9,11 @@ const DetailsPage = () => {
   const [request, setRequest] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
-
+  const navigate = useNavigate();
   useEffect(() => {
-    axiosSecure.get(`/requests/${id}`)
-      .then(res => {
+    axiosSecure
+      .get(`/requests/${id}`)
+      .then((res) => {
         console.log(res.data);
         setRequest(res.data);
         setLoading(false);
@@ -34,13 +35,11 @@ const DetailsPage = () => {
 
   return (
     <div className="min-h-screen   flex justify-center items-center p-4">
-      
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="shadow-2xl rounded-2xl p-8 w-full max-w-2xl border-t-8 border-red-600"
-      >
+        className="shadow-2xl rounded-2xl p-8 w-full max-w-2xl border-t-8 border-red-600">
         {/* Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-6 text-center">
           <Typewriter
@@ -55,7 +54,6 @@ const DetailsPage = () => {
 
         {/* Content */}
         <div className="space-y-4 text-gray-700 text-lg">
-
           <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
             <span className="font-semibold text-red-600">Name:</span> Chomok Das
           </motion.p>
@@ -65,25 +63,33 @@ const DetailsPage = () => {
           </motion.p>
 
           <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
-            <span className="font-semibold text-red-600">Location:</span> Mymensingh
+            <span className="font-semibold text-red-600">Location:</span>{" "}
+            Mymensingh
           </motion.p>
 
           <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
-            <span className="font-semibold text-red-600">Date:</span> 01 jan, 2026
+            <span className="font-semibold text-red-600">Date:</span> 01 jan,
+            2026
           </motion.p>
-
         </div>
 
         {/* Button */}
         <motion.div
-          className="mt-8 text-center"
-          whileHover={{ scale: 1.1 }}
-        >
-          <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full shadow-lg transition duration-300">
-            Donate Now
-          </button>
+          className="mt-8 text-center gap-2"
+          whileHover={{ scale: 1.1 }}>
+          <div className="flex gap-2 items-center justify-center">
+            <Link
+              to="/donate"
+              className="btn bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full shadow-lg transition duration-300">
+              Donate Now
+            </Link>
+            <button
+              onClick={() => navigate(-1)}
+              className="btn  bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full shadow-lg transition duration-300">
+              Go Back
+            </button>
+          </div>
         </motion.div>
-
       </motion.div>
     </div>
   );

@@ -54,11 +54,11 @@ const AllUsers = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl shadow-xl p-4 md:p-8 border border-gray-100">
+      className=" rounded-2xl shadow-xl p-4 md:p-8 border border-gray-100">
       {/* Header & Filter Section */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div>
-          <h2 className="section-title text-gray-800">
+          <h2 className="section-title text-base-content">
             👤 All <span className="title-highlight">Users</span>
           </h2>
           <p className="section-subtitle">
@@ -67,7 +67,7 @@ const AllUsers = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="font-medium text-gray-600">Filter by:</span>
+          <span className="font-medium text-base-content">Filter by:</span>
           <select
             onChange={(e) => setFilter(e.target.value)}
             className="select select-bordered border-red-200 focus:outline-none focus:border-red-500 rounded-xl">
@@ -112,11 +112,11 @@ const AllUsers = () => {
                           <img src={user.photoURL} alt={user.name} />
                         </motion.div>
                       </div>
-                      <div className="font-bold text-gray-800">{user.name}</div>
+                      <div className="font-bold text-base-content">{user.name}</div>
                     </div>
                   </td>
 
-                  <td className="text-gray-600 italic text-sm">{user.email}</td>
+                  <td className="text-base-content/70 italic text-sm">{user.email}</td>
 
                   {/* Role Badge */}
                   <td>
@@ -150,7 +150,7 @@ const AllUsers = () => {
                       <motion.label
                         whileTap={{ scale: 0.9 }}
                         tabIndex={0}
-                        className="btn btn-sm btn-ghost hover:bg-red-100 text-gray-500 rounded-full">
+                        className="btn btn-sm btn-ghost hover:bg-red-100 text-base-content rounded-full">
                         <BsThreeDotsVertical size={18} />
                       </motion.label>
 
