@@ -71,18 +71,18 @@ const SearchRequest = () => {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-red-100 border border-red-50 mb-16"
+        className="p-8 md:p-10 rounded-[2.5rem] shadow-2xl  border border-red-50 mb-16"
       >
         <form onSubmit={handleSubmit(handleSearch)}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Blood Group */}
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Blood Group</label>
+              <label className="label font-bold text-base-content ml-1">Blood Group</label>
               <div className="relative">
                 <FaTint className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <select
                   {...register("bloodGroup", { required: true })}
-                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14 bg-gray-50 border-none"
+                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14  border-none"
                 >
                   <option value="">Select Group</option>
                   {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((bg) => (
@@ -94,12 +94,12 @@ const SearchRequest = () => {
 
             {/* District */}
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">District Name</label>
+              <label className="label font-bold text-base-content ml-1">District Name</label>
               <div className="relative">
                 <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <select
                   {...register("district", { required: true })}
-                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14 bg-gray-50 border-none"
+                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14  border-none"
                 >
                   <option value="district">Select District</option>
                   {allDistricts.map((district, index) => (
@@ -111,12 +111,12 @@ const SearchRequest = () => {
 
             {/* Upazila */}
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Upazila Name</label>
+              <label className="label font-bold text-base-content ml-1">Upazila Name</label>
               <div className="relative">
                 <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <select
                   {...register("upazila", { required: true })}
-                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14 bg-gray-50 border-none"
+                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14  border-none"
                 >
                   <option value="">Select Upazila</option>
                   {upozillas.map((u, i) => (
@@ -134,7 +134,7 @@ const SearchRequest = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="btn bg-red-600 hover:bg-red-700 text-white px-12 h-14 rounded-2xl border-none shadow-xl shadow-red-200 font-bold text-lg gap-2"
+              className="btn bg-red-600 hover:bg-red-700 text-white px-12 h-14 rounded-2xl border-none shadow-xl font-bold text-lg gap-2"
               disabled={loading}
             >
               {loading ? (
@@ -156,7 +156,7 @@ const SearchRequest = () => {
             exit={{ opacity: 0 }}
           >
             {donors.length === 0 ? (
-              <div className="text-center p-20 bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
+              <div className="text-center p-20  rounded-[3rem] border-2 border-dashed border-gray-200">
                 <FaUserSlash className="text-6xl text-gray-300 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-400">No donor found for this search</h3>
                 <p className="text-gray-400">Try changing the location or blood group.</p>
