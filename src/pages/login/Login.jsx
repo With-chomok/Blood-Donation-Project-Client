@@ -24,7 +24,7 @@ export default function Login() {
   //  Demo Login Function
   const handleDemoLogin = (role) => {
     if (role === "admin") {
-      setValue("email", "admin12@gmail.com");
+      setValue("email", "Only Admin Can See This");
       setValue("password", "123456789Aa@");
     } else {
       setValue("email", "dipoldaschomok@gmail.com");
@@ -65,17 +65,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center  px-4 py-12">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-white shadow-2xl shadow-red-500/10 rounded-[2.5rem] p-8 md:p-10 border border-red-50"
+        className="w-full max-w-md shadow-2xl shadow-red-500/10 rounded-[2.5rem] p-8 md:p-10 border border-red-50"
       >
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-black text-gray-800 tracking-tight">
+          <h2 className="text-3xl font-black text-base-content tracking-tight">
             Welcome <span className="text-red-600">Back!</span>
           </h2>
-          <p className="text-gray-500 font-medium mt-2">Login to continue saving lives.</p>
+          <p className="text-base-content/70 font-medium mt-2">Login to continue saving lives.</p>
         </div>
 
         {/* 🛠️ Demo Login Buttons */}
@@ -97,7 +97,7 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="block font-bold text-gray-700 mb-2 ml-1 text-sm uppercase tracking-wide">Email Address</label>
+            <label className="block font-bold text-base-content mb-2 ml-1 text-sm uppercase tracking-wide">Email Address</label>
             <input
               type="email"
               placeholder="example@mail.com"
@@ -109,7 +109,7 @@ export default function Login() {
 
           {/* Password */}
           <div className="relative">
-            <label className="block font-bold text-gray-700 mb-2 ml-1 text-sm uppercase tracking-wide">Password</label>
+            <label className="block font-bold text-base-content mb-2 ml-1 text-sm uppercase tracking-wide">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -130,7 +130,7 @@ export default function Login() {
 
           <button 
             disabled={loading}
-            className={`btn w-full bg-red-600 hover:bg-red-700 border-none text-white shadow-xl shadow-red-200 rounded-2xl h-14 text-lg font-black transition-all ${loading ? 'opacity-70' : ''}`}
+            className={`btn w-full bg-red-600 hover:bg-red-700 border-none text-white  rounded-2xl h-14 text-lg font-black transition-all ${loading ? 'opacity-70' : ''}`}
           >
             {loading ? <span className="loading loading-spinner"></span> : "Sign In"}
           </button>
@@ -145,9 +145,9 @@ export default function Login() {
         {/* Social Login */}
         <button
           onClick={handleGoogleLogin}
-          className="btn w-full bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 shadow-sm rounded-2xl h-14 font-bold gap-3 transition-all"
+          className="btn w-full  border border-gray-200 text-base-content shadow-sm rounded-2xl h-14 font-bold gap-3 transition-all"
         >
-          <FcGoogle size={24} /> Continue with Google
+          <FcGoogle  size={24} /> Continue with Google
         </button>
 
         <p className="text-center mt-8 text-gray-500 font-medium">

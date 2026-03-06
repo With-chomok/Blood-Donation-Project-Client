@@ -17,6 +17,7 @@ import {
   PieChart,
   Pie,
   Cell,
+  Legend,
 } from "recharts";
 const MainDashboard = () => {
   const { user } = useAuth();
@@ -65,8 +66,8 @@ const MainDashboard = () => {
     axiosSecure.patch(`/update/user/status/${id}`, { status }).then(() => {
       setRequests((prev) =>
         prev.map((data) =>
-          data._id === id ? { ...data, donationStatus: status } : data
-        )
+          data._id === id ? { ...data, donationStatus: status } : data,
+        ),
       );
       Swal.fire("Updated!", `Donation is now ${status}`, "success");
     });
@@ -96,7 +97,7 @@ const MainDashboard = () => {
   const chartData = [
     { name: "Total Users", value: stats.totalUsers },
     { name: "Requests", value: stats.totalRequest },
-    { name: "Funding", value: stats.totalFunding / 100 }, 
+    { name: "Funding", value: stats.totalFunding / 100 },
   ];
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
@@ -119,7 +120,7 @@ const MainDashboard = () => {
     },
     {
       id: 3,
-      title: "Donation Requests",
+      title: "Donor Requests",
       count: stats.totalRequest,
       icon: <FaBurn />,
       color: "text-red-600",
@@ -140,7 +141,7 @@ const MainDashboard = () => {
             key={card.id}
             variants={itemVariants}
             whileHover={{ y: -5, boxShadow: "0px 10px 20px rgba(0,0,0,0.05)" }}
-            className="bg-white p-6 rounded-2xl shadow-sm border border-gray-50 flex items-center gap-4 transition-all">
+            className=" p-6 rounded-2xl shadow-sm border border-gray-50 flex items-center gap-4 transition-all">
             <motion.div
               initial={{ rotate: -10 }}
               animate={{ rotate: 0 }}
@@ -148,8 +149,8 @@ const MainDashboard = () => {
               {card.icon}
             </motion.div>
             <div>
-              <p className="text-gray-500 font-medium">{card.title}</p>
-              <h3 className="text-2xl font-bold text-gray-800">{card.count}</h3>
+              <p className="text-base-content font-medium">{card.title}</p>
+              <h3 className="text-2xl font-bold text-base-content/70">{card.count}</h3>
             </div>
           </motion.div>
         ))}
@@ -157,7 +158,7 @@ const MainDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
         <motion.div
           variants={itemVariants}
-          className="bg-white p-10 rounded-2xl shadow-sm border border-gray-50 h-[350px]">
+          className=" p-10 rounded-2xl shadow-sm border border-gray-50 h-[350px]">
           <h3 className="text-lg font-bold mb-4">Donation Analytics (Bar)</h3>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData}>
@@ -177,24 +178,41 @@ const MainDashboard = () => {
 
         <motion.div
           variants={itemVariants}
-          className="bg-white p-6 rounded-2xl shadow-sm border border-gray-50 h-[350px]">
-          <h3 className="text-lg font-bold mb-4">Distribution (Pie)</h3>
-          <ResponsiveContainer width="100%" height="100%">
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
+          className="p-6 rounded-3xl shadow-lg backdrop-blur border border-gray-100 h-[350px]">
+          <h3 className="text-lg font-bold mb-4 text-base-content">
+            Distribution Overview
+          </h3>
+
+          <ResponsiveContainer width="100%" height="85%">
             <PieChart>
               <Pie
                 data={chartData}
-                innerRadius={60}
-                outerRadius={80}
-                paddingAngle={5}
-                dataKey="value">
+                innerRadius={65}
+                outerRadius={95}
+                paddingAngle={4}
+                dataKey="value"
+                animationDuration={1200}>
                 {chartData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
+                    stroke="white"
+                    strokeWidth={2}
                   />
                 ))}
               </Pie>
-              <Tooltip />
+
+              <Tooltip
+                contentStyle={{
+                  borderRadius: "10px",
+                  border: "none",
+                  boxShadow: "0px 5px 20px rgba(0,0,0,0.1)",
+                }}
+              />
+
+              <Legend verticalAlign="bottom" height={36} iconType="circle" />
             </PieChart>
           </ResponsiveContainer>
         </motion.div>
@@ -202,9 +220,9 @@ const MainDashboard = () => {
       {/* Recent Donation Requests Table */}
       <motion.div
         variants={itemVariants}
-        className="bg-white shadow-sm border border-gray-100 rounded-2xl overflow-hidden">
-        <div className="p-4 border-b border-gray-50 flex justify-between items-center bg-white">
-          <h3 className="text-xl font-bold text-gray-800">
+        className=" shadow-sm border border-gray-100 rounded-2xl overflow-hidden">
+        <div className="p-4 border-b border-gray-50 flex justify-between items-center ">
+          <h3 className="text-xl font-bold text-base-content">
             Recent Donation Requests
           </h3>
           <Link
@@ -238,14 +256,14 @@ const MainDashboard = () => {
                     transition={{ delay: index * 0.1 }}
                     key={r._id}
                     className="hover:bg-red-50/30 transition-colors border-b border-gray-50 last:border-none">
-                    <td className="font-semibold text-gray-700">
+                    <td className="font-semibold text-base-content">
                       {r.recipientName}
                     </td>
-                    <td className="text-gray-600">
+                    <td className="text-base-content">
                       {r.district}, {r.upazila}
                     </td>
                     <td>
-                      <span className="block font-medium text-gray-700">
+                      <span className="block font-medium text-base-content">
                         {r.donationDate}
                       </span>
                       <span className="text-xs text-gray-400">
@@ -263,13 +281,13 @@ const MainDashboard = () => {
                           r.donationStatus === "done"
                             ? "bg-green-100 text-green-700"
                             : r.donationStatus === "inprogress"
-                            ? "bg-blue-100 text-blue-700"
-                            : "bg-gray-100 text-gray-700"
+                              ? "bg-blue-100 text-blue-700"
+                              : "bg-gray-100 text-gray-700"
                         }`}>
                         {r.donationStatus}
                       </span>
                     </td>
-                    <td className="flex gap-2">
+                    <td className="flex gap-2 mt-5">
                       {r.donationStatus === "inprogress" && (
                         <div className="flex gap-1">
                           <button

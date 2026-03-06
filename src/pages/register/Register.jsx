@@ -70,10 +70,10 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-red-50 px-4 py-10">
-      <div className="w-full max-w-2xl bg-white shadow-xl shadow-red-500/20 rounded-2xl p-6 md:p-10">
+    <div className="min-h-screen flex items-center justify-center  px-4 py-10">
+      <div className="w-full max-w-2xl  border-gray-100/10 shadow-xl shadow-red-300/10 rounded-2xl p-6 md:p-10">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-red-600 mb-8">
-          Register Now
+          <span className="text-base-content">Register</span> Now
         </h2>
 
         <form
@@ -163,6 +163,7 @@ export default function Register() {
             <label className="font-semibold mb-1">Password</label>
             <div className="relative">
               <input
+              placeholder="New Password"
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
                   required: true,
@@ -172,6 +173,7 @@ export default function Register() {
               />
               <button
                 type="button"
+                
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-red-600 z-10"
               >
@@ -208,7 +210,7 @@ export default function Register() {
           </div>
         </form>
 
-        <p className="text-center mt-6 text-gray-600">
+        <p className="text-center mt-6 text-base-content/70">
           Already have an account?{" "}
           <Link to="/login" className="text-red-600 font-bold hover:underline">
             Login

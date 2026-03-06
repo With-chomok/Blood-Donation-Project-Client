@@ -1,28 +1,13 @@
 import { Link, NavLink } from "react-router";
 import useAuth from "../../hooks/UseAuth";
-import { useEffect, useState } from "react";
+import ThemeToggle from "../Theme/ThemeToggle";
+
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light",
-  );
+  
 
-  // Theme change effect
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
 
-  // Toggle handle function
-  const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
   const navLinkStyle = ({ isActive }) =>
     isActive
       ? "text-red-600 p-1 md:px-4 md:py-2 rounded bg-red-100 font-semibold"
@@ -40,12 +25,7 @@ const Navbar = () => {
               🩸<span className="text-gray-800">Life</span>
               <span className="italic">Drop</span>
             </Link>
-            <input
-              type="checkbox"
-              onChange={handleToggle}
-              checked={theme === "dark"}
-              className="toggle toggle-error ml-2 w-8 h-5 md:w-10 md:h-6 md:ml-3"
-            />
+            <ThemeToggle></ThemeToggle>
           </div>
         </div>
 

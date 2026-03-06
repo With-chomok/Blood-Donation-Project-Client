@@ -8,7 +8,7 @@ const DonationPreview = () => {
   const { user } = useAuth();
 
   return (
-    <section className=" py-20">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mx-3  md:mx-10">
           <div className="text-center md:text-left">
@@ -50,17 +50,17 @@ const DonationPreview = () => {
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center gap-3 text-gray-600">
+                <div className="flex items-center gap-3 text-base-content group-hover:text-black">
                   <FaMapMarkerAlt className="text-red-400" />
                   <span className="font-medium">Dhaka Medical College</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-600">
+                <div className="flex items-center group-hover:text-black gap-3 text-base-content/70">
                   <FaCalendarAlt className="text-red-400" />
                   <span className="font-medium">25 Dec 2025</span>
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-gray-50">
+              <div className="mt-8 pt-6 border-t group-hover:border-black border-gray-50">
                 {user ? (
                   <Link
                     to="/details"

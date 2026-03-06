@@ -65,7 +65,7 @@ const AddRequest = () => {
     >
       {/* 📝 Header Section */}
       <div className="mb-10 text-center lg:text-left">
-        <h1 className="section-title font-black text-gray-800 flex flex-wrap justify-center lg:justify-start gap-3">
+        <h1 className="section-title font-black text-base-content flex flex-wrap justify-center lg:justify-start gap-3">
           Post a <span className="title-highlight">
             <Typewriter
               options={{
@@ -81,32 +81,32 @@ const AddRequest = () => {
 
       <motion.div 
         whileHover={{ shadow: "0 25px 50px -12px rgba(220, 38, 38, 0.1)" }}
-        className="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-2xl shadow-red-100 border border-red-50"
+        className="p-6 md:p-12 rounded-[2.5rem] border border-red-50"
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           
           {/* Requester Info (Read Only) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Requester Name</label>
+              <label className="label font-bold text-base-content ml-1">Requester Name</label>
               <div className="relative">
                 <FaUserAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   value={user?.displayName || ""}
                   readOnly
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
 
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Requester Email</label>
+              <label className="label font-bold text-base-content ml-1">Requester Email</label>
               <div className="relative">
                 <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   value={user?.email || ""}
                   readOnly
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
@@ -115,24 +115,24 @@ const AddRequest = () => {
           {/*  Recipient Name & Blood Group */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Recipient Name</label>
+              <label className="label font-bold text-base-content ml-1">Recipient Name</label>
               <div className="relative">
                 <FaUserAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   {...register("recipientName", { required: true })}
                   placeholder="Recipient Name"
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
 
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Blood Group</label>
+              <label className="label font-bold text-base-content ml-1">Blood Group</label>
               <div className="relative">
                 <FaTint className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <select 
                   {...register("bloodGroup", { required: true })}
-                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14 bg-gray-100 border-none appearance-none"
+                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14  border-none appearance-none"
                 >
                   <option value="">Select Blood Group</option>
                   <option>A+</option>
@@ -151,12 +151,12 @@ const AddRequest = () => {
           {/*  District & Upazila */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">District Name</label>
+              <label className="label font-bold text-base-content ml-1">District Name</label>
               <div className="relative">
                 <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <select 
                   {...register("district", { required: true })}
-                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14 bg-gray-100 border-none"
+                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14  border-none"
                 >
                   <option value="district">Select District</option>
                   {allDistricts.map((district, index) => (
@@ -167,12 +167,12 @@ const AddRequest = () => {
             </div>
 
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Upazila Name</label>
+              <label className="label font-bold text-base-content ml-1">Upazila Name</label>
               <div className="relative">
                 <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <select 
                   {...register("upazila", { required: true })}
-                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14 bg-gray-100 border-none"
+                  className="select select-bordered focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 pl-12 h-14  border-none"
                 >
                   <option value="">Select Upazila</option>
                   {upozillas.map((u, i) => (
@@ -188,25 +188,25 @@ const AddRequest = () => {
           {/*  Hospital & Full Address */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Hospital Name</label>
+              <label className="label font-bold text-base-content ml-1">Hospital Name</label>
               <div className="relative">
                 <FaHospital className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   {...register("hospitalName", { required: true })}
                   placeholder="Hospital Name"
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
 
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Full Address Line</label>
+              <label className="label font-bold text-base-content ml-1">Full Address Line</label>
               <div className="relative">
                 <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   {...register("address", { required: true })}
                   placeholder="Full Address"
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
@@ -215,25 +215,25 @@ const AddRequest = () => {
           {/*  Date & Time */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Donation Date</label>
+              <label className="label font-bold text-base-content ml-1">Donation Date</label>
               <div className="relative">
                 <FaCalendarAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   type="date"
                   {...register("donationDate", { required: true })}
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
 
             <div className="form-control">
-              <label className="label font-bold text-gray-700 ml-1">Donation Time</label>
+              <label className="label font-bold text-base-content ml-1">Donation Time</label>
               <div className="relative">
                 <FaClock className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
                 <input
                   type="time"
                   {...register("donationTime", { required: true })}
-                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 h-14 border-none"
+                  className="input focus:border-red-500 input-bordered w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 h-14 border-none"
                 />
               </div>
             </div>
@@ -241,13 +241,13 @@ const AddRequest = () => {
 
           {/*  Message Area */}
           <div className="form-control">
-            <label className="label font-bold text-gray-700 ml-1">Request Message</label>
+            <label className="label font-bold text-base-content ml-1">Request Message</label>
             <div className="relative">
               <FaAlignLeft className="absolute left-4 top-6 text-red-500 z-10" />
               <textarea
                 {...register("requestMessage", { required: true })}
                 placeholder="Explain why blood is needed..."
-                className="textarea textarea-bordered focus:border-red-500 w-full rounded-2xl outline-none shadow-lg shadow-red-500/20 bg-gray-100 pl-12 pt-5 border-none h-32 text-base"
+                className="textarea textarea-bordered focus:border-red-500 w-full rounded-2xl outline-none shadow-lg shadow-red-500/20  pl-12 pt-5 border-none h-32 text-base"
               />
             </div>
           </div>
@@ -257,7 +257,7 @@ const AddRequest = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="btn bg-red-600 hover:bg-red-700 text-white w-full rounded-2xl border-none h-10 text-[18px] font-semibold gap-3 shadow-xl shadow-red-200 mt-3"
+            className="btn bg-red-600 hover:bg-red-700 text-white w-full rounded-2xl border-none h-10 text-[18px] font-semibold gap-3 shadow-xl  mt-3"
           >
             <FaPlusCircle /> Request Blood
           </motion.button>

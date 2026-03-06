@@ -33,13 +33,13 @@ const DetailsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex justify-center items-center p-4">
+    <div className="min-h-screen   flex justify-center items-center p-4">
       
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-2xl border-t-8 border-red-600"
+        className="shadow-2xl rounded-2xl p-8 w-full max-w-2xl border-t-8 border-red-600"
       >
         {/* Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-red-600 mb-6 text-center">
@@ -56,19 +56,19 @@ const DetailsPage = () => {
         {/* Content */}
         <div className="space-y-4 text-gray-700 text-lg">
 
-          <motion.p whileHover={{ scale: 1.05 }}>
+          <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
             <span className="font-semibold text-red-600">Name:</span> Chomok Das
           </motion.p>
 
-          <motion.p whileHover={{ scale: 1.05 }}>
+          <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
             <span className="font-semibold text-red-600">Blood Group:</span> A+
           </motion.p>
 
-          <motion.p whileHover={{ scale: 1.05 }}>
+          <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
             <span className="font-semibold text-red-600">Location:</span> Mymensingh
           </motion.p>
 
-          <motion.p whileHover={{ scale: 1.05 }}>
+          <motion.p className="text-base-content" whileHover={{ scale: 1.05 }}>
             <span className="font-semibold text-red-600">Date:</span> 01 jan, 2026
           </motion.p>
 

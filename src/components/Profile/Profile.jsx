@@ -66,7 +66,7 @@ const Profile = () => {
       transition={{ duration: 0.5 }}
       className="max-w-4xl mx-auto"
     >
-      <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+      <div className=" rounded-3xl shadow-xl overflow-hidden border border-gray-100">
         
         {/* Banner Decor */}
         <div className="h-32 bg-gradient-to-r from-red-500 to-red-700"></div>
@@ -91,7 +91,7 @@ const Profile = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsEditing(true)}
-                className="btn bg-white border-red-500 text-red-600 hover:bg-red-50 gap-2 rounded-xl shadow-sm"
+                className="btn  border-red-500 text-red-600 hover:bg-red-50 gap-2 rounded-xl shadow-sm"
               >
                 <FaEdit /> Edit Profile
               </motion.button>
@@ -99,7 +99,7 @@ const Profile = () => {
               <div className="flex gap-2">
                 <button 
                   onClick={() => setIsEditing(false)}
-                  className="btn btn-ghost text-gray-500"
+                  className="btn btn-ghost bg-red-600 hover:bg-red-700 text-white gap-2 rounded-xl shadow-md border-none"
                 >
                   Cancel
                 </button>
@@ -117,8 +117,8 @@ const Profile = () => {
 
           {/* User Info Header */}
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-800">{formData.name}</h2>
-            <p className="text-gray-500">{user?.email}</p>
+            <h2 className="text-3xl font-bold text-base-content">{formData.name}</h2>
+            <p className="text-base-content">{user?.email}</p>
           </div>
 
           <hr className="mb-8 border-gray-100" />
@@ -127,7 +127,7 @@ const Profile = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-600 flex items-center gap-2">
+              <label className="text-sm font-semibold text-base-content flex items-center gap-2">
                 <FaUserCircle className="text-red-400" /> Full Name
               </label>
               <input
@@ -143,7 +143,7 @@ const Profile = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-600 flex items-center gap-2">
+              <label className="text-sm font-semibold text-base-content flex items-center gap-2">
                 <FaTint className="text-red-500" /> Blood Group
               </label>
               <select
@@ -164,7 +164,7 @@ const Profile = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-600 flex items-center gap-2">
+              <label className="text-sm font-semibold text-base-content flex items-center gap-2">
                 <FaMapMarkerAlt className="text-red-400" /> District
               </label>
               <input
@@ -180,7 +180,7 @@ const Profile = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-600 flex items-center gap-2">
+              <label className="text-sm font-semibold text-base-content flex items-center gap-2">
                 <FaMapMarkerAlt className="text-red-400" /> Upazila
               </label>
               <input
@@ -201,7 +201,7 @@ const Profile = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="md:col-span-2 space-y-2"
               >
-                <label className="text-sm font-semibold text-gray-600">Photo URL</label>
+                <label className="text-sm font-semibold text-base-content">Photo URL</label>
                 <input
                   type="text"
                   name="photoURL"
