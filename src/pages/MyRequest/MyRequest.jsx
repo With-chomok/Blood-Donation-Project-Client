@@ -9,13 +9,14 @@ const MyRequest = () => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("all");
+
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     axiosSecure
       .get(`/my-donation-requests?page=${currentPage - 1}&size=${itemsPerPage}`)
       .then((res) => {
-        console.log(res.data);
+        
         setMyRequests(res.data.result);
         setTotalRequest(res.data.totalRequest);
       });
@@ -32,7 +33,7 @@ const MyRequest = () => {
   const pages = [...Array(totalPages).keys()].map((e) => e + 1);
   //   const startIndex = (currentPage - 1) * itemsPerPage;
 
-  console.log(myRequests, filteredRequests);
+  // console.log(myRequests, filteredRequests);
 
   const handlePrev = () => {
     if (currentPage > 1) {

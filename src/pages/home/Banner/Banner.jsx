@@ -63,7 +63,7 @@ const Banner = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/register")}
-                className="btn bg-red-600 hover:bg-red-700 text-white px-10 h-16 rounded-2xl border-none shadow-xl shadow-red-200 font-black text-lg gap-3"
+                className="btn bg-red-600 hover:bg-red-700 text-white px-10 h-12 rounded-2xl border-none  shadow-red-200 font-black text-base gap-3"
               >
                 <FaUserPlus /> Join as Donor
               </motion.button>
@@ -72,7 +72,7 @@ const Banner = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/search")}
-                className="btn bg-white hover:bg-gray-50 text-gray-800 px-10 h-16 rounded-2xl border border-gray-200 shadow-xl font-black text-lg gap-3 transition-all"
+                className="btn bg-white hover:bg-gray-50 text-gray-800 px-10 h-12 rounded-2xl border border-gray-200  font-black text-base gap-3 transition-all"
               >
                 <FaSearch className="text-red-600" /> Search Donors
               </motion.button>

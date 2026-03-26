@@ -77,7 +77,7 @@ const Router = createBrowserRouter([
         Component: TermsOfService
       },
       {
-        path:`/details`,
+        path :"/details/:id" ,
         Component: DetailsPage
       }
     ],
